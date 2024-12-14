@@ -50,30 +50,35 @@ Function Invoke-AllRefrenceLinks {
     }
 }
 
-Function ConvertFrom-RefrenceRequests {
-   [CmdletBinding()]
-        PARAM(
-            [Parameter(Mandatory = $True)]
-            [ValidateNotNullOrEmpty()]
-            $AllRefrenceRequests
-        )
+Function ConvertFrom-AllRefrenceRequests {
+    [CmdletBinding()]
+    PARAM(
+        [Parameter(Mandatory = $True)]
+        [ValidateNotNullOrEmpty()]
+        [System.Collections.Hashtable[]]$AllRefrenceRequests
+    )
     $JSONPattern =   '(?s)<pre><code class="lang-json">(.*?)<\/code><\/pre'
-    $AllRefrenceRequests | Foreach-object {
+    $AllRefrenceRequests | ForEach-Object {
         $Request = $_
-        $RegexMatches = [regex]::Matches($Request.InvokeRefLink.Content,$JSONPattern)
-        if ($RegexMatches.Count -gt 0) {
-            foreach ($Match in $RegexMatches) {
-                $JSONString = $Match.Groups[1].Value
-                $JSONString = $JSONString.trim()
-                # a check is needed due to online documentation having some improper json formatting. may revisit if becomes issue.
-                if ($JSONString | Test-JSON -ErrorAction SilentlyContinue) {
-                    $JSONObject = $JSONString | ConvertFrom-JSON
-                    $JSONObject | Add-Member -MemberType NoteProperty -Name "SourceURI" -Value $Request.URI
-                    Write-Output $JSONObject
-                }
+        Write-Verbose "URI $($Request.URI)"
+        $Fragment = $Request.URI -replace '.*#', ''
+        Write-Verbose "Fragment $Fragment"
+        $FragmentPattern = "<h2\s+id=`"$Fragment`".*?>.*?</h2>"
+        $Content = $Request.InvokeRefLink.Content
+        # get a start point to allow to grab only the first match of Regex instead of whole page
+        $FragmentMatch = [regex]::Match($Content, $FragmentPattern)
+        if ($FragmentMatch.Success) {
+            $StartIndex = $FragmentMatch.Index + $FragmentMatch.Length
+            $RelevantContent = $Content.Substring($StartIndex)
+            $JSONMatch = [regex]::Match($RelevantContent, $JSONPattern, 'Singleline')
+            $JSONString = $JSONMatch[0].Groups.Value.trim() # using only index 0 to grab the first match of the json pattern match after the refrence in the uri on the request
+            if ($JSONString | Test-JSON -ErrorAction SilentlyContinue) {
+                $JSONObject = $JSONString | ConvertFrom-JSON
+                $JSONObject | Add-Member -MemberType NoteProperty -Name "SourceURI" -Value $Request.URI
+                Write-Output $JSONObject
             }
-        }    
-    }  
+        }
+    }
 }
 
 # Decalare Variables and make initial content request.
@@ -81,7 +86,7 @@ $BaseURI = "https://learn.microsoft.com/en-us/azure/role-based-access-control/bu
 $BaseURIRequest = Invoke-WebRequest $BaseURI
 
 # Retrieve an object with all built-in-roles links to query for JSON objects
-$NeededLinks = Get-AzureRBACInformationLinks -BaseURLRequest $BaseURLRequest
+$NeededLinks = Get-AzureRBACInformationLinks -BaseURIRequest $BaseURIRequest
 
 # Transform the needed links into refrence links
 $RefrenceLinks = Build-AzureRBACLinks -NeededLinks $NeededLinks -BaseURI $BaseURI
@@ -90,7 +95,7 @@ $RefrenceLinks = Build-AzureRBACLinks -NeededLinks $NeededLinks -BaseURI $BaseUR
 $AllRefrenceRequests = Invoke-AllRefrenceLinks -RefrenceLinks $RefrenceLinks
 
 # Extract all JSON Content from refrence links
-$FoundJSONs = ConvertFrom-RefrenceRequests -AllRefrenceRequests $AllRefrenceRequests
+$FoundJSONs = ConvertFrom-AllRefrenceRequests -AllRefrenceRequests $AllRefrenceRequests
 
 # Create JSON object needed for Project
 $FinalJSON = $JSONOBjects | ConvertTo-Json -Depth 10

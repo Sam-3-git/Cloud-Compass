@@ -6,7 +6,7 @@ function injectRoleBar(roles) {
   roleBar.classList.add('role-bar');
   roleBar.id = 'roleBar';
 
-  // Apply some basic styles to the role bar for testing
+  // Apply styles to the role bar for testing
   roleBar.style.position = 'fixed';
   roleBar.style.top = '0';
   roleBar.style.left = '0';
@@ -17,6 +17,8 @@ function injectRoleBar(roles) {
   roleBar.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)'; // Add shadow for visibility
   roleBar.style.overflowX = 'auto'; // Enable horizontal scrolling
   roleBar.style.whiteSpace = 'nowrap'; // Prevent wrapping of pills
+  roleBar.style.display = 'flex'; // Align pills horizontally
+  roleBar.style.flexWrap = 'nowrap'; // Prevent pills from wrapping to the next line
 
   // Create a container for the pills
   const roleContainer = document.createElement('div');
@@ -26,13 +28,14 @@ function injectRoleBar(roles) {
   roles.forEach(role => {
     const pill = document.createElement('div');
     pill.classList.add('role-pill');
-    pill.textContent = role.roleName.split(' ')[0]; // Get the first word of the role name
+    pill.textContent = role.roleName; // Show full role name
     pill.style.margin = '5px'; // Add some margin between pills for spacing
     pill.style.padding = '5px 10px'; // Padding inside pills
     pill.style.borderRadius = '20px'; // Rounded corners for pill
     pill.style.backgroundColor = getRandomColor(); // Use a random color for each pill
     pill.style.cursor = 'pointer'; // Make pills clickable
     pill.style.color = 'white'; // Text color
+    pill.style.display = 'inline-block'; // Ensure pill is inline and takes up only the required space
 
     // Tooltip for description
     const tooltip = document.createElement('div');

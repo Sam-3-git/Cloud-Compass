@@ -2,15 +2,36 @@
   "manifest_version": 3,
   "name": "Azure RoleAdvisor",
   "version": "1.0",
-  "description": "A tool to display Azure roles and their descriptions",
-  "permissions": ["activeTab"],
+  "description": "Displays Azure role-based access control (RBAC) roles for users and admins.",
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/ara16.png",
+      "48": "icons/ara48.png",
+      "128": "icons/ara128.png"
+    }
   },
   "background": {
     "service_worker": "background.js"
   },
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://portal.azure.com/*",
+        "*://portal.azure.us/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
   "host_permissions": [
     "https://raw.githubusercontent.com/*"
-  ]
+  ],
+  "icons": {
+    "16": "icons/ara16.png",
+    "48": "icons/ara48.png",
+    "128": "icons/ara128.png"
+  }
 }

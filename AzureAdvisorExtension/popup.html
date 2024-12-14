@@ -1,62 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azure Advisor</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      width: 250px;
-      height: 250px;
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-    }
-
-    #toggle-container {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px;
-    }
-
-    #search-bar {
-      padding: 5px;
-      margin: 10px;
-      border-radius: 5px;
-      width: 100%;
-    }
-
-    .pill-container {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 10px;
-      overflow-y: auto;
-      max-height: 150px;
-    }
-
-    .pill {
-      background-color: #0078d4;
-      color: white;
-      padding: 8px 15px;
-      margin: 5px;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Advisor</title>
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div id="toggle-container">
-    <label for="toggleContent" class="switch">
-      <input type="checkbox" id="toggleContent">
-      <span class="slider"></span>
-    </label>
-  </div>  
-  <input type="text" id="search-bar" placeholder="Search for roles..." />
-  <div class="pill-container" id="roleBar"></div>
+    <div class="container">
+        <div class="toggle-container">
+            <span class="toggle-label">Overlay</span>
+            <label class="switch">
+                <input type="checkbox" id="content-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
 
-  <script src="popup.js"></script>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search roles...">
+        </div>
+    </div>
+    <script src="popup.js"></script>
 </body>
 </html>

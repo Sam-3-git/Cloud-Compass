@@ -1,7 +1,14 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 /* General container */
 .container {
-  padding: 20px;
-  width: 300px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
   display: flex;
   background-color: #2e2e2e; /* Dark grey background */
   border-radius: 15px; /* Rounded corners */

@@ -4,10 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Azure Advisor</title>
-  <link rel="stylesheet" href="styles/popup.css"> <!-- Ensure you have the correct path -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 250px;
+      height: 250px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    #toggle-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px;
+    }
+
+    #search-bar {
+      padding: 5px;
+      margin: 10px;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    .pill-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px;
+      overflow-y: auto;
+      max-height: 150px;
+    }
+
+    .pill {
+      background-color: #0078d4;
+      color: white;
+      padding: 8px 15px;
+      margin: 5px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <div id="roleBar" style="overflow-x: auto; white-space: nowrap;"></div> <!-- This is where pills will go -->
+  <div id="toggle-container">
+    <label for="toggleContent">Enable Content Script:</label>
+    <input type="checkbox" id="toggleContent">
+  </div>
+  <input type="text" id="search-bar" placeholder="Search for roles..." />
+  <div class="pill-container" id="roleBar"></div>
+
   <script src="popup.js"></script>
 </body>
 </html>

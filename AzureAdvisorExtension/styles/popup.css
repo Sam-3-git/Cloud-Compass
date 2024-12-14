@@ -1,41 +1,47 @@
-#roleBar {
-    display: flex;
-    flex-wrap: nowrap;
-    padding: 10px;
-    background-color: #f3f4f6;
-    border-radius: 10px;
-    justify-content: flex-start;
-    max-height: 100px;
-    overflow-x: auto; /* Allow horizontal scrolling */
-    margin-top: 10px;
-    overflow-y: hidden; /* Prevent vertical overflow */
-  }
-  
-  .pill-container {
-    margin: 5px;
-  }
-  
-  .pill {
-    background-color: #0078d4; /* Azure blue or adjust to your color scheme */
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .pill:hover {
-    background-color: #005a9e;
-  }
-  
-  .tooltip {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    visibility: hidden;
-    font-size: 12px;
-    z-index: 1000;
-  }
-  
+/* Ensure the popup fits within the desired size and shape */
+body {
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  height: 250px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for the toggle section */
+#toggle-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  align-items: center;
+}
+
+/* Styling for the search bar */
+#search-bar {
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Pill container styling with scrollable section for pills */
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  overflow-y: auto;
+  max-height: 150px;  /* limit the height */
+}
+
+/* Each pill styling */
+.pill {
+  background-color: #0078d4;
+  color: white;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}

@@ -1,54 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Create a tooltip element to display role descriptions on hover
-  const tooltip = document.createElement("div");
-  tooltip.classList.add("tooltip");
-  document.body.appendChild(tooltip);
-
-  // Container for the role pills
-  const roleBar = document.getElementById("roleBar");
-
-  // Fetch data from the JSON URL
-  fetch('https://raw.githubusercontent.com/Sam-3-git/Azure-RoleAdvisor/main/webscraper/AzureRoleAdvisor.json')
-    .then(response => response.json())
-    .then(data => {
-      console.log("Fetched data:", data); // Log the fetched data
-      // Assuming data contains a roles array
-      data.forEach(role => {
-        createRolePill(role); // Create a pill for each role
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleContent = document.getElementById('toggleContent');
+  const searchBar = document.getElementById('search-bar');
+  const roleBar = document.getElementById('roleBar');
+  
+  // Handle content script toggle
+  toggleContent.addEventListener('change', function () {
+    if (toggleContent.checked) {
+      chrome.scripting.executeScript({
+        target: { tabId: chrome.tabs.TAB_ID },  // Ensure this targets the correct tab
+        function: enableContentScript
       });
-    })
-    .catch(error => {
-      console.error("Error fetching data:", error);
-    });
+    } else {
+      // Optionally handle disabling content script
+    }
+  });
 
-  // Function to create a role pill
-  function createRolePill(role) {
-    const pill = document.createElement("div");
-    pill.classList.add("pill-container");
-
-    const pillText = document.createElement("span");
-    pillText.classList.add("pill");
-    pillText.innerText = role.roleName; // Show the full role name
-
-    // Log pill creation for debugging
-    console.log("Creating pill for:", pillText.innerText);
-
-    pillText.addEventListener("mouseenter", () => {
-      tooltip.innerText = role.description;
-      tooltip.style.visibility = "visible";
-      tooltip.style.top = `${pill.getBoundingClientRect().top - tooltip.offsetHeight - 5}px`;
-      tooltip.style.left = `${pill.getBoundingClientRect().left + (pill.offsetWidth / 2) - (tooltip.offsetWidth / 2)}px`;
-    });
-
-    pillText.addEventListener("mouseleave", () => {
-      tooltip.style.visibility = "hidden";
-    });
-
-    pillText.addEventListener("click", () => {
-      window.open(role.SourceURI, "_blank");
-    });
-
-    pill.appendChild(pillText);
-    roleBar.appendChild(pill);
+  // Function to enable content script
+  function enableContentScript() {
+    console.log('Content script enabled!');
+    // Insert logic for content.js here
   }
+
+  // Search bar functionality
+  searchBar.addEventListener('input', function () {
+    const query = searchBar.value.toLowerCase();
+    const pills = roleBar.querySelectorAll('.pill');
+    pills.forEach(pill => {
+      const pillText = pill.textContent.toLowerCase();
+      pill.style.display = pillText.includes(query) ? 'block' : 'none';
+    });
+  });
+
+  // Example: Fetch roles data (mock example)
+  const mockData = [
+    { roleName: 'Contributor' },
+    { roleName: 'Reader' },
+    { roleName: 'Owner' }
+  ];
+
+  // Display pills based on data
+  mockData.forEach(role => {
+    const pill = document.createElement('div');
+    pill.classList.add('pill');
+    pill.textContent = role.roleName;
+    roleBar.appendChild(pill);
+  });
 });

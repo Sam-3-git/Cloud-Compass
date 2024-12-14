@@ -47,6 +47,9 @@ function injectRoleBar(roles) {
     tooltip.style.padding = '5px 10px';
     tooltip.style.borderRadius = '5px';
     tooltip.style.visibility = 'hidden'; // Hide the tooltip by default
+    tooltip.style.transition = 'visibility 0.2s, opacity 0.2s'; // Smooth transition for visibility and opacity
+    tooltip.style.opacity = '0'; // Start with opacity 0
+    tooltip.style.zIndex = '99999'; // Ensure tooltip appears on top of other elements
 
     // Event listener to show tooltip on hover
     pill.addEventListener('mouseenter', (event) => {
@@ -54,6 +57,7 @@ function injectRoleBar(roles) {
       tooltip.style.opacity = '1'; // Fade in tooltip
       tooltip.style.left = `${event.pageX + 10}px`; // Position relative to mouse (x-axis)
       tooltip.style.top = `${event.pageY + 10}px`; // Position relative to mouse (y-axis)
+      document.body.appendChild(tooltip); // Append tooltip to the body to avoid it being trapped
     });
 
     // Event listener to hide tooltip when mouse leaves

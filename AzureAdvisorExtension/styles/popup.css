@@ -53,31 +53,30 @@ body, html {
   height: 0;
 }
 
+/* Background behind the dot */
 .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  width: 32px;
-  height: 18px;
+  width: 40px;  /* Slightly larger for better fit */
+  height: 20px;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 50px;
+  border-radius: 50px; /* Smooth rounded edges */
 }
 
 /* The dot inside the slider */
 .slider:before {
   position: absolute;
   content: "";
-  height: 16px; /* Reduced the size for better fit */
+  height: 16px; /* Keep this smaller for a nice contrast */
   width: 16px;
   border-radius: 50%;
   background-color: white;
   transition: 0.4s;
-  top: 2px; /* Center the dot vertically */
-  left: 2px; /* Adjust dot's horizontal position */
+  top: 2px; /* Keep centered vertically */
+  left: 2px; /* Keep centered horizontally */
 }
 
 /* When the toggle is on */

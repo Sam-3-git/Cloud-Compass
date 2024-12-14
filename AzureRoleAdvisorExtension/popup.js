@@ -2,14 +2,29 @@
 function displayRoles(roles) {
   console.log("Roles data: ", roles);  // Log the roles data to check if it's being fetched correctly
 
-  const rolesList = document.getElementById('rolesList');
-  rolesList.innerHTML = ''; // Clear the list before populating
+  const roleContainer = document.getElementById('roleContainer');
+  roleContainer.innerHTML = ''; // Clear the container before populating
 
   if (roles && roles.length > 0) {
     roles.forEach(role => {
-      const li = document.createElement('li');
-      li.textContent = `${role.roleName}: ${role.description}`; // Display role name and description
-      rolesList.appendChild(li);
+      // Create a pill for each role
+      const pill = document.createElement('div');
+      pill.classList.add('role-pill');
+      pill.textContent = role.roleName.split(' ')[0]; // Get first part of role name
+
+      // Tooltip for description
+      const tooltip = document.createElement('div');
+      tooltip.classList.add('role-pill-tooltip');
+      tooltip.textContent = role.description;
+
+      // Event listener to open the SourceURI in a new tab on click
+      pill.addEventListener('click', () => {
+        window.open(role.SourceURI, '_blank');
+      });
+
+      // Add the pill and tooltip to the container
+      roleContainer.appendChild(pill);
+      roleContainer.appendChild(tooltip); // Tooltip comes after the pill in the DOM
     });
   } else {
     displayMessage('No roles data found.');
@@ -18,11 +33,11 @@ function displayRoles(roles) {
 
 // Function to display messages in the popup
 function displayMessage(message) {
-  const rolesList = document.getElementById('rolesList');
-  rolesList.innerHTML = ''; // Clear the list before showing message
+  const roleContainer = document.getElementById('roleContainer');
+  roleContainer.innerHTML = ''; // Clear the container before showing message
   const li = document.createElement('li');
   li.textContent = message;
-  rolesList.appendChild(li);
+  roleContainer.appendChild(li);
 }
 
 // Fetch the roles data from the GitHub repository

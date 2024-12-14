@@ -1,29 +1,65 @@
-/* popup.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #333333;
+/* Style for the container with the role pills at the top */
+.role-bar {
+    background-color: #0078d4; /* Azure blue */
+    border-radius: 12px;
     padding: 10px;
-    width: 200px;
+    margin: 0;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
   }
   
-  h1 {
-    font-size: 18px;
-    color: #0078D4; /* Azure blue color */
-    text-align: center;
-  }
-  
-  button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    background-color: #0078D4;
-    color: white;
-    border: none;
+  /* Styling for the role pills */
+  .role-pill {
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    padding: 8px 16px;
+    margin-right: 8px;
+    font-size: 14px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
   }
   
-  button:hover {
-    background-color: #005a9e;
+  /* Random background color for each pill */
+  .role-pill:nth-child(odd) {
+    background-color: #61dafb; /* Light blue */
+  }
+  
+  .role-pill:nth-child(even) {
+    background-color: #ffb74d; /* Yellow */
+  }
+  
+  /* Hover effect: Show the description */
+  .role-pill:hover {
+    background-color: #ff5722; /* Orange on hover */
+    transform: scale(1.1); /* Slightly enlarge the pill */
+  }
+  
+  /* Styling for the description tooltip */
+  .role-pill-tooltip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: none;
+    z-index: 10;
+  }
+  
+  /* Make the tooltip visible on hover */
+  .role-pill:hover + .role-pill-tooltip {
+    display: block;
+  }
+  
+  /* Ensure the page is styled well and the content is readable */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
   }
   

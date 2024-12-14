@@ -1,4 +1,6 @@
 // This will check if the current page in the Azure portal relates to a role-based resource
+// debugfortesting
+console.log("Azure RoleAdvisor content script is running!");
 const currentPage = window.location.href;
 
 chrome.storage.local.get('roleData', (data) => {

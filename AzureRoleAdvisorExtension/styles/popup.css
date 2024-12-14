@@ -1,4 +1,4 @@
-/* Style for the container with the role pills at the top */
+/* Add this CSS directly in content.js or inject dynamically if needed */
 .role-bar {
     background-color: #0078d4; /* Azure blue */
     border-radius: 12px;
@@ -10,6 +10,12 @@
     justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
   
   /* Styling for the role pills */
@@ -54,12 +60,5 @@
   /* Make the tooltip visible on hover */
   .role-pill:hover + .role-pill-tooltip {
     display: block;
-  }
-  
-  /* Ensure the page is styled well and the content is readable */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
   }
   

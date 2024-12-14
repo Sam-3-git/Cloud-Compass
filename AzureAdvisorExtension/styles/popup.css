@@ -1,8 +1,10 @@
 /* General container */
 .container {
-  padding: 10px;
+  padding: 20px;
   width: 300px;
   display: flex;
+  background-color: #2e2e2e; /* Dark grey background */
+  border-radius: 15px; /* Rounded corners */
   flex-direction: column;
   align-items: center;
 }

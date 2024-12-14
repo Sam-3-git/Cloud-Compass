@@ -1,4 +1,3 @@
-// Function to inject the role bar into the page
 function injectRoleBar(roles) {
   // Create the role bar container
   const roleBar = document.createElement('div');
@@ -38,11 +37,14 @@ function injectRoleBar(roles) {
   body.insertBefore(roleBar, body.firstChild); // Insert it as the first child of the body
 }
 
+
+
 // Fetch the roles data from the GitHub repository
 fetch('https://raw.githubusercontent.com/Sam-3-git/Azure-RoleAdvisor/main/webscraper/AzureRoleAdvisor.json')
   .then(response => response.json()) // Parse the response as JSON
   .then(data => {
     console.log("Fetched data:", data); // Log the fetched data
+    console.log("Attempting to inject the role bar...");
     injectRoleBar(data); // Inject the role bar with the roles data
   })
   .catch(error => {

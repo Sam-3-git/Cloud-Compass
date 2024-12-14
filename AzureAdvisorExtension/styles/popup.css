@@ -35,7 +35,6 @@ body, html {
   font-size: 14px;
   color: #ffffff; /* White text for high visibility */
   font-weight: bold; /* Make text stand out more */
-  text-align: left; /* Align to the left */
   width: 100%; /* Ensure it fills the available space */
 }
 

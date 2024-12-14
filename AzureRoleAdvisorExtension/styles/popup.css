@@ -1,22 +1,27 @@
-/* Ensure body and html have no unwanted overflow */
+/* Prevent body overflow and ensure page content stays visible */
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Remove global overflow */
     height: 100%;
+    overflow: visible; /* Ensure the page itself does not have overflow */
   }
   
   #roleBar {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center; /* Center the pills vertically */
     padding: 10px;
     background-color: #f3f4f6;
     border-radius: 10px;
-    justify-content: flex-start;
-    max-height: 100px;
-    overflow-x: auto; /* Allow horizontal scrolling for pills */
-    margin-top: 10px;
-    overflow-y: hidden; /* No vertical scrolling for the role bar */
+    max-width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling when needed */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    position: fixed; /* Make the bar stay at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the bar is above all other page content */
   }
   
   .pill-container {
@@ -30,6 +35,7 @@ html, body {
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.2s ease;
   }
   
   .pill:hover {
@@ -47,4 +53,9 @@ html, body {
     z-index: 1000;
   }
   
+  /* Optional: Style for the pills to have rounded corners and a smoother layout */
+  .pill-container {
+    display: inline-block;
+    margin: 5px;
+  }
   

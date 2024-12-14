@@ -1,4 +1,12 @@
-#roleBar {
+/* Ensure body and html have no unwanted overflow */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Remove global overflow */
+    height: 100%;
+  }
+  
+  #roleBar {
     display: flex;
     flex-wrap: nowrap;
     padding: 10px;
@@ -6,9 +14,9 @@
     border-radius: 10px;
     justify-content: flex-start;
     max-height: 100px;
-    overflow-x: auto; /* Allow horizontal scrolling */
+    overflow-x: auto; /* Allow horizontal scrolling for pills */
     margin-top: 10px;
-    overflow-y: hidden; /* Prevent vertical overflow */
+    overflow-y: hidden; /* No vertical scrolling for the role bar */
   }
   
   .pill-container {
@@ -38,4 +46,5 @@
     font-size: 12px;
     z-index: 1000;
   }
+  
   

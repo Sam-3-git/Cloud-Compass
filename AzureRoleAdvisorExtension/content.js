@@ -68,6 +68,7 @@ function injectRoleBar(roles) {
 
     // Event listener to open the SourceURI in a new tab on click
     pill.addEventListener('click', () => {
+      console.log("Clicked pill: ", role); // Log the entire role object for debugging
       console.log(`Role clicked: ${role.roleName}`);
       console.log(`Source URI: ${role.SourceURI}`);
       window.open(role.SourceURI, '_blank'); // Open SourceURI in a new tab

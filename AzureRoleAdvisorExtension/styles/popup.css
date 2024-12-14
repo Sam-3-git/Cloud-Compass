@@ -1,49 +1,51 @@
-/* Ensure the entire popup has no overflow */
+/* Basic reset for the popup */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Prevent scrollbars for the entire popup */
+    width: 100%;
+    overflow: hidden; /* Prevent default scrollbars in the popup */
   }
   
   #roleBar {
     display: flex;
-    flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
     padding: 10px;
     background-color: #f3f4f6;
     border-radius: 10px;
     max-width: 100%;
-    overflow-x: auto; /* Horizontal scroll */
-    position: absolute; /* Fix at top of popup */
-    top: 0;
-    left: 0;
-    width: 100%;
+    overflow-x: auto; /* Horizontal scrolling when necessary */
+    position: absolute;
+    top: 10px; /* Push it slightly down from the top */
+    left: 10px;
+    right: 10px;
     z-index: 1000;
-    box-sizing: border-box; /* Ensure padding does not break layout */
+    box-sizing: border-box;
     height: auto;
   }
   
   .pill-container {
-    margin: 5px;
+    display: inline-block;
+    margin-right: 10px;
   }
   
   .pill {
-    background-color: #0078d4; /* Azure blue or adjust */
+    background-color: #0078d4; /* Azure blue color */
     color: white;
     padding: 8px 15px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s ease;
-    white-space: nowrap; /* Prevent text wrapping inside pill */
+    white-space: nowrap;
   }
   
   .pill:hover {
     background-color: #005a9e;
   }
   
+  /* Tooltip styles */
   .tooltip {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.75);
@@ -52,13 +54,7 @@ html, body {
     border-radius: 5px;
     visibility: hidden;
     font-size: 12px;
-    z-index: 1000;
+    z-index: 1001; /* Tooltip on top */
     pointer-events: none;
-  }
-  
-  /* Optional: Slight spacing adjustments for layout */
-  .pill-container {
-    display: inline-block;
-    margin-right: 5px; /* Spacing between pills */
   }
   

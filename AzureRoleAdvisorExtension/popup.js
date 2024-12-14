@@ -50,3 +50,15 @@ function displayMessage(message) {
   li.textContent = message;
   rolesList.appendChild(li);
 }
+
+// Fetch the roles data from the GitHub repository
+fetch('https://raw.githubusercontent.com/Sam-3-git/Azure-RoleAdvisor/main/webscraper/AzureRoleAdvisor.json')
+  .then(response => response.json()) // Parse the response as JSON
+  .then(data => {
+    console.log("Fetched data:", data); // Log the fetched data
+    displayRoles(data.roles); // Assuming the fetched data contains a 'roles' array
+  })
+  .catch(error => {
+    console.error("Error fetching data:", error); // Log any errors
+    displayMessage('Error loading roles.');
+  });

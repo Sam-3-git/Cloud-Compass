@@ -15,9 +15,8 @@ function injectRoleBar(roles) {
   roleBar.style.padding = '10px 0';
   roleBar.style.zIndex = '9999'; // Ensure it appears on top of other content
   roleBar.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)'; // Add shadow for visibility
-
-  // Log roleBar styles to confirm they're applied correctly
-  console.log("Role bar styles applied:", roleBar.style);
+  roleBar.style.overflowX = 'auto'; // Enable horizontal scrolling
+  roleBar.style.whiteSpace = 'nowrap'; // Prevent wrapping of pills
 
   // Create a container for the pills
   const roleContainer = document.createElement('div');
@@ -27,7 +26,7 @@ function injectRoleBar(roles) {
   roles.forEach(role => {
     const pill = document.createElement('div');
     pill.classList.add('role-pill');
-    pill.textContent = role.roleName.split(' ')[0]; // Get first part of role name
+    pill.textContent = role.roleName.split(' ')[0]; // Get the first word of the role name
     pill.style.margin = '5px'; // Add some margin between pills for spacing
     pill.style.padding = '5px 10px'; // Padding inside pills
     pill.style.borderRadius = '20px'; // Rounded corners for pill

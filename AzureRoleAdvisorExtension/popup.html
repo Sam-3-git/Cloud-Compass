@@ -1,15 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azure RoleAdvisor</title>
-  <link rel="stylesheet" href="styles/popup.css">
-</head>
-<body>
-  <div class="role-bar">
-    <div id="roleContainer" class="role-container"></div>
-  </div>
-  <script src="popup.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Azure Role Advisor</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 10px;
+        width: 300px;
+        height: 200px;
+      }
+      .role-bar {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+      .role-pill {
+        background-color: #0078d4;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .role-pill:hover {
+        background-color: #005a8a;
+      }
+      .role-pill-tooltip {
+        visibility: hidden;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        z-index: 99999;
+      }
+      .role-pill:hover + .role-pill-tooltip {
+        visibility: visible;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="role-bar" id="roleBar">
+      <!-- Role pills will be inserted here dynamically -->
+    </div>
+    <script src="popup.js"></script>
+  </body>
 </html>

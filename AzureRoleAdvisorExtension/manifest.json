@@ -2,37 +2,15 @@
   "manifest_version": 3,
   "name": "Azure RoleAdvisor",
   "version": "1.0",
-  "description": "Displays role information for Azure resources.",
-  "permissions": [
-    "activeTab"
-  ],
-  "host_permissions": [
-    "https://portal.azure.com/*",
-    "https://portal.azure.us/*"
-  ],
+  "description": "A tool to display Azure roles and their descriptions",
+  "permissions": ["activeTab"],
+  "action": {
+    "default_popup": "popup.html"
+  },
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://portal.azure.com/*",
-        "*://portal.azure.us/*"
-      ],
-      "js": ["content.js"]
-    }
-  ],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icons/ara16.png",
-      "48": "icons/ara48.png",
-      "128": "icons/ara128.png"
-    }
-  },
-  "icons": {
-    "16": "icons/ara16.png",
-    "48": "icons/ara48.png",
-    "128": "icons/ara128.png"
-  }
+  "host_permissions": [
+    "https://raw.githubusercontent.com/*"
+  ]
 }

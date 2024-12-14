@@ -1,4 +1,3 @@
-// Function to inject the role bar into the page
 function injectRoleBar(roles) {
   console.log("Injecting role bar...");
 
@@ -14,11 +13,11 @@ function injectRoleBar(roles) {
   roleBar.style.width = '100%';
   roleBar.style.backgroundColor = '#0078D4'; // Azure blue
   roleBar.style.padding = '5px 0'; // Decrease padding for smaller bar height
-  roleBar.style.zIndex = '9998'; // Ensure it doesn't block page content but stays above everything else
+  roleBar.style.zIndex = '9999'; // Ensure it stays on top of everything
   roleBar.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)'; // Add shadow for visibility
   roleBar.style.overflowX = 'auto'; // Enable horizontal scrolling
   roleBar.style.whiteSpace = 'nowrap'; // Prevent wrapping of pills
-  roleBar.style.display = 'none'; // Initially hide the role bar
+  roleBar.style.display = 'block'; // Explicitly make sure it's displayed (instead of none)
   roleBar.style.transition = 'display 0.3s'; // Smooth transition for show/hide effect
 
   // Create a container for the pills
@@ -89,11 +88,8 @@ function injectRoleBar(roles) {
   body.insertBefore(roleBar, body.firstChild); // Insert it as the first child of the body
   console.log("Role bar injected into the body.");
 
-  // Log the final DOM to ensure it was injected
-  console.log("Body after role bar injection:", document.body.innerHTML);
-
-  // Adjust the margin-top of the body to ensure page content is visible under the role bar
-  body.style.marginTop = '50px'; // Add top margin to the body to accommodate the role bar height
+  // Ensure the page content is visible beneath the role bar by adjusting the top margin
+  body.style.marginTop = '60px'; // Add top margin to the body to accommodate the role bar height
 }
 
 // Function to generate random colors for pills

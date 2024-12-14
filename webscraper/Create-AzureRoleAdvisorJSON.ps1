@@ -63,15 +63,15 @@ Function ConvertFrom-AllRefrenceRequests {
         Write-Verbose "URI $($Request.URI)"
         $Fragment = $Request.URI -replace '.*#', ''
         Write-Verbose "Fragment $Fragment"
-        $FragmentPattern = "<h2\s+id=`"$Fragment`".*?>.*?</h2>"
+        $FragmentPattern = "<h2\s+id=`"$Fragment`".*?>.*?<\/h2>"
         $Content = $Request.InvokeRefLink.Content
         # get a start point to allow to grab only the first match of Regex instead of whole page
         $FragmentMatch = [regex]::Match($Content, $FragmentPattern)
         if ($FragmentMatch.Success) {
             $StartIndex = $FragmentMatch.Index + $FragmentMatch.Length
             $RelevantContent = $Content.Substring($StartIndex)
-            $JSONMatch = [regex]::Match($RelevantContent, $JSONPattern, 'Singleline')
-            $JSONString = $JSONMatch[0].Groups.Value.trim() # using only index 0 to grab the first match of the json pattern match after the refrence in the uri on the request
+            $JSONMatch = [regex]::Match($RelevantContent, $JSONPattern)
+            $JSONString = $JSONMatch[0].Groups[1].Value.trim() # using only index 0 and index of 1 on group to grab the first match of the json pattern match after the refrence in the uri on the request
             if ($JSONString | Test-JSON -ErrorAction SilentlyContinue) {
                 $JSONObject = $JSONString | ConvertFrom-JSON
                 $JSONObject | Add-Member -MemberType NoteProperty -Name "SourceURI" -Value $Request.URI
@@ -98,5 +98,5 @@ $AllRefrenceRequests = Invoke-AllRefrenceLinks -RefrenceLinks $RefrenceLinks
 $FoundJSONs = ConvertFrom-AllRefrenceRequests -AllRefrenceRequests $AllRefrenceRequests
 
 # Create JSON object needed for Project
-$FinalJSON = $JSONOBjects | ConvertTo-Json -Depth 10
+$FinalJSON = $FoundJSONs | ConvertTo-Json -Depth 10
 $FinalJSON | Set-Content -path $PSScriptRoot\AzureRoleAdvisor.json -Encoding UTF8

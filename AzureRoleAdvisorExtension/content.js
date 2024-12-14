@@ -1,3 +1,4 @@
+// Function to inject the role bar into the page
 function injectRoleBar(roles) {
   console.log("Injecting role bar...");
 
@@ -12,13 +13,21 @@ function injectRoleBar(roles) {
   roleBar.style.left = '0';
   roleBar.style.width = '100%';
   roleBar.style.backgroundColor = '#0078D4'; // Azure blue
-  roleBar.style.padding = '10px 0';
+  roleBar.style.padding = '5px 0'; // Decrease padding for smaller bar height
   roleBar.style.zIndex = '9999'; // Ensure it appears on top of other content
   roleBar.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)'; // Add shadow for visibility
   roleBar.style.overflowX = 'auto'; // Enable horizontal scrolling
   roleBar.style.whiteSpace = 'nowrap'; // Prevent wrapping of pills
-  roleBar.style.display = 'flex'; // Align pills horizontally
-  roleBar.style.flexWrap = 'nowrap'; // Prevent pills from wrapping to the next line
+  roleBar.style.display = 'none'; // Initially hide the role bar
+  roleBar.style.transition = 'display 0.3s'; // Smooth transition for show/hide effect
+
+  // Hover effect to show role bar
+  document.body.addEventListener('mouseenter', () => {
+    roleBar.style.display = 'flex'; // Show role bar on hover over the body
+  });
+  document.body.addEventListener('mouseleave', () => {
+    roleBar.style.display = 'none'; // Hide role bar when mouse leaves the body
+  });
 
   // Create a container for the pills
   const roleContainer = document.createElement('div');
@@ -30,12 +39,14 @@ function injectRoleBar(roles) {
     pill.classList.add('role-pill');
     pill.textContent = role.roleName; // Show full role name
     pill.style.margin = '5px'; // Add some margin between pills for spacing
-    pill.style.padding = '5px 10px'; // Padding inside pills
-    pill.style.borderRadius = '20px'; // Rounded corners for pill
+    pill.style.padding = '3px 8px'; // Decrease padding for smaller pills
+    pill.style.borderRadius = '15px'; // Round the corners a bit more
     pill.style.backgroundColor = getRandomColor(); // Use a random color for each pill
     pill.style.cursor = 'pointer'; // Make pills clickable
     pill.style.color = 'white'; // Text color
+    pill.style.fontSize = '12px'; // Smaller font size
     pill.style.display = 'inline-block'; // Ensure pill is inline and takes up only the required space
+    pill.style.position = 'relative'; // Ensure tooltip positioning works relative to the pill
 
     // Tooltip for description
     const tooltip = document.createElement('div');
@@ -74,9 +85,8 @@ function injectRoleBar(roles) {
       window.open(role.SourceURI, '_blank'); // Open SourceURI in a new tab
     });
 
-    // Append pill and tooltip to the role container
+    // Append pill to the role container
     roleContainer.appendChild(pill);
-    roleContainer.appendChild(tooltip);
   });
 
   // Append the role container to the role bar

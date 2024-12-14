@@ -1,6 +1,7 @@
 /* Header container for title and icon */
 .header {
   display: flex;
+  margin-top: 10px;
   align-items: center;
   margin-bottom: 10px;
 }

@@ -1,8 +1,8 @@
 body, html {
   margin: auto;
   padding: 0;
-  width: auto;
-  height: auto;
+  width: 400px;
+  height: 100%;
   display: flex;
   background-color: #2e2e2e; /* Dark grey background */
   border-radius: 30px; /* Rounded corners */
@@ -13,8 +13,8 @@ body, html {
 /* General container */
 .container {
   margin: 5px;
-  padding: 5px;
-  width: 300px;
+  padding: 20px;
+  width: auto;
   height: 100%;
   display: flex;
   background-color: #2e2e2e; /* Dark grey background */

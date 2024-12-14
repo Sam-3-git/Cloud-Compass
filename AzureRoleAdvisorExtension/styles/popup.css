@@ -1,27 +1,28 @@
-/* Prevent body overflow and ensure page content stays visible */
+/* Ensure the entire popup has no overflow */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: visible; /* Ensure the page itself does not have overflow */
+    overflow: hidden; /* Prevent scrollbars for the entire popup */
   }
   
   #roleBar {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: center; /* Center the pills vertically */
+    align-items: center;
     padding: 10px;
     background-color: #f3f4f6;
     border-radius: 10px;
     max-width: 100%;
-    overflow-x: auto; /* Enable horizontal scrolling when needed */
-    overflow-y: hidden; /* Prevent vertical scrolling */
-    position: fixed; /* Make the bar stay at the top */
+    overflow-x: auto; /* Horizontal scroll */
+    position: absolute; /* Fix at top of popup */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Ensure the bar is above all other page content */
+    z-index: 1000;
+    box-sizing: border-box; /* Ensure padding does not break layout */
+    height: auto;
   }
   
   .pill-container {
@@ -29,13 +30,14 @@ html, body {
   }
   
   .pill {
-    background-color: #0078d4; /* Azure blue or adjust to your color scheme */
+    background-color: #0078d4; /* Azure blue or adjust */
     color: white;
     padding: 8px 15px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s ease;
+    white-space: nowrap; /* Prevent text wrapping inside pill */
   }
   
   .pill:hover {
@@ -51,11 +53,12 @@ html, body {
     visibility: hidden;
     font-size: 12px;
     z-index: 1000;
+    pointer-events: none;
   }
   
-  /* Optional: Style for the pills to have rounded corners and a smoother layout */
+  /* Optional: Slight spacing adjustments for layout */
   .pill-container {
     display: inline-block;
-    margin: 5px;
+    margin-right: 5px; /* Spacing between pills */
   }
   

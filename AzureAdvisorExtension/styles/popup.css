@@ -68,16 +68,17 @@ body, html {
   border-radius: 50px;
 }
 
+/* The dot inside the slider */
 .slider:before {
   position: absolute;
   content: "";
-  height: 12px;
-  width: 12px;
-  border-radius: 50px;
-  left: 4px;
-  bottom: 4px;
+  height: 16px; /* Reduced the size for better fit */
+  width: 16px;
+  border-radius: 50%;
   background-color: white;
   transition: 0.4s;
+  top: 2px; /* Center the dot vertically */
+  left: 2px; /* Adjust dot's horizontal position */
 }
 
 /* When the toggle is on */
@@ -85,6 +86,7 @@ input:checked + .slider {
   background-color: #0078D4;
 }
 
+/* Move the dot to the right when checked */
 input:checked + .slider:before {
   transform: translateX(14px);
 }

@@ -86,7 +86,7 @@ input:checked + .slider {
 
 /* Move the dot to the right when checked */
 input:checked + .slider:before {
-  transform: translateX(14px);
+  transform: translateX(20px);
 }
 
 /* Search bar style */

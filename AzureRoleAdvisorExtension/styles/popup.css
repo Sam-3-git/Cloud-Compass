@@ -1,64 +1,63 @@
-/* Add this CSS directly in content.js or inject dynamically if needed */
-.role-bar {
-    background-color: #0078d4; /* Azure blue */
-    border-radius: 12px;
-    padding: 10px;
+/* Set the popup dimensions and remove unnecessary padding/margins */
+body {
+    width: 300px; /* Adjust this width as needed */
     margin: 0;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
     display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
+    overflow: hidden;
+  }
+  
+  #roleBar {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 5px 0;
+    margin: 0;
     width: 100%;
-    z-index: 9999;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
   
-  /* Styling for the role pills */
-  .role-pill {
-    background-color: #f4f4f4;
-    border-radius: 20px;
-    padding: 8px 16px;
-    margin-right: 8px;
-    font-size: 14px;
+  .pill {
+    background-color: #0078D4; /* Azure blue */
+    color: white;
+    border-radius: 12px;
+    padding: 5px 10px;
+    margin-right: 10px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    white-space: nowrap;
+    min-width: 80px; /* Ensure pills have a minimum width */
+    text-align: center;
+    font-size: 14px;
   }
   
-  /* Random background color for each pill */
-  .role-pill:nth-child(odd) {
-    background-color: #61dafb; /* Light blue */
+  .pill:hover {
+    background-color: #005a9e; /* Darker blue for hover effect */
   }
   
-  .role-pill:nth-child(even) {
-    background-color: #ffb74d; /* Yellow */
-  }
-  
-  /* Hover effect: Show the description */
-  .role-pill:hover {
-    background-color: #ff5722; /* Orange on hover */
-    transform: scale(1.1); /* Slightly enlarge the pill */
-  }
-  
-  /* Styling for the description tooltip */
-  .role-pill-tooltip {
+  .tooltip {
     position: absolute;
-    top: 0;
-    left: 0;
+    visibility: hidden;
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
-    display: none;
-    z-index: 10;
+    font-size: 12px;
+    z-index: 9999;
+    white-space: nowrap;
   }
   
-  /* Make the tooltip visible on hover */
-  .role-pill:hover + .role-pill-tooltip {
-    display: block;
+  .pill-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Adjust the popup layout for better spacing */
+  .popup-content {
+    overflow-y: auto;
+    max-height: 80vh;
+    margin: 0;
   }
   

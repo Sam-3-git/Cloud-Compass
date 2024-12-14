@@ -49,9 +49,11 @@
 </head>
 <body>
   <div id="toggle-container">
-    <label for="toggleContent">Enable Content Script:</label>
-    <input type="checkbox" id="toggleContent">
-  </div>
+    <label for="toggleContent" class="switch">
+      <input type="checkbox" id="toggleContent">
+      <span class="slider"></span>
+    </label>
+  </div>  
   <input type="text" id="search-bar" placeholder="Search for roles..." />
   <div class="pill-container" id="roleBar"></div>
 

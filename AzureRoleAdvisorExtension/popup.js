@@ -1,11 +1,14 @@
-chrome.storage.local.get('roleData', (data) => {
-    const roleData = data.roleData;
-    const roleList = document.getElementById('roleList');
+// popup.js
+document.addEventListener('DOMContentLoaded', function() {
+  const roles = getRoles();  // Hypothetical function to get roles
   
-    roleData.forEach(role => {
-      const roleElement = document.createElement('div');
-      roleElement.textContent = role.roleName;
-      roleList.appendChild(roleElement);
+  // Check if `roles` is an array before using forEach
+  if (Array.isArray(roles)) {
+    roles.forEach(role => {
+      console.log(role);  // Do something with each role
     });
-  });
-  
+  } else {
+    console.error("Roles data is not an array or is undefined");
+  }
+});
+

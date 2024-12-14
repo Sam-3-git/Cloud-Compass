@@ -8,6 +8,7 @@
     max-height: 100px;
     overflow-x: auto; /* Allow horizontal scrolling */
     margin-top: 10px;
+    overflow-y: hidden; /* Prevent vertical overflow */
   }
   
   .pill-container {

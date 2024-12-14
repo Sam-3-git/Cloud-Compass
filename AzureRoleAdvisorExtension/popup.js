@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const pillText = document.createElement("span");
     pillText.classList.add("pill");
-    pillText.innerText = role.roleName.split(' ')[0]; // Display first part of the role name
+    pillText.innerText = role.roleName; // Show the full role name
 
     // Log pill creation for debugging
     console.log("Creating pill for:", pillText.innerText);

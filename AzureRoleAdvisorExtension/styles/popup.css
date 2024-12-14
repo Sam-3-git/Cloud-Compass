@@ -1,51 +1,32 @@
-/* Basic reset for the popup */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* Prevent default scrollbars in the popup */
-  }
-  
-  #roleBar {
+#roleBar {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    flex-wrap: nowrap;
     padding: 10px;
     background-color: #f3f4f6;
     border-radius: 10px;
-    max-width: 100%;
-    overflow-x: auto; /* Horizontal scrolling when necessary */
-    position: absolute;
-    top: 10px; /* Push it slightly down from the top */
-    left: 10px;
-    right: 10px;
-    z-index: 1000;
-    box-sizing: border-box;
-    height: auto;
+    justify-content: flex-start;
+    max-height: 100px;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    margin-top: 10px;
   }
   
   .pill-container {
-    display: inline-block;
-    margin-right: 10px;
+    margin: 5px;
   }
   
   .pill {
-    background-color: #0078d4; /* Azure blue color */
+    background-color: #0078d4; /* Azure blue or adjust to your color scheme */
     color: white;
     padding: 8px 15px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
   }
   
   .pill:hover {
     background-color: #005a9e;
   }
   
-  /* Tooltip styles */
   .tooltip {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.75);
@@ -54,7 +35,6 @@ html, body {
     border-radius: 5px;
     visibility: hidden;
     font-size: 12px;
-    z-index: 1001; /* Tooltip on top */
-    pointer-events: none;
+    z-index: 1000;
   }
   

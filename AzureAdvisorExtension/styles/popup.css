@@ -1,3 +1,22 @@
+/* Header container for title and icon */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 20px; /* Adjust size to fit well */
+  height: 20px;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff; /* White text for contrast */
+}
+
 body, html {
   margin: auto;
   padding: 0;

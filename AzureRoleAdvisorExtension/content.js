@@ -19,6 +19,8 @@ function injectRoleBar(roles) {
   roleBar.style.whiteSpace = 'nowrap'; // Prevent wrapping of pills
   roleBar.style.display = 'block'; // Explicitly make sure it's displayed (instead of none)
   roleBar.style.transition = 'display 0.3s'; // Smooth transition for show/hide effect
+  roleBar.style.height = '50px'; // Set a fixed height for the role bar
+  roleBar.style.marginBottom = '10px'; // Add space between role bar and the rest of the page
 
   // Create a container for the pills
   const roleContainer = document.createElement('div');
@@ -89,7 +91,7 @@ function injectRoleBar(roles) {
   console.log("Role bar injected into the body.");
 
   // Ensure the page content is visible beneath the role bar by adjusting the top margin
-  body.style.marginTop = '60px'; // Add top margin to the body to accommodate the role bar height
+  body.style.marginTop = '70px'; // Add top margin to the body to accommodate the role bar height
 }
 
 // Function to generate random colors for pills

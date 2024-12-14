@@ -49,16 +49,24 @@ function injectRoleBar(roles) {
     tooltip.style.visibility = 'hidden'; // Hide the tooltip by default
 
     // Event listener to show tooltip on hover
-    pill.addEventListener('mouseenter', () => {
+    pill.addEventListener('mouseenter', (event) => {
       tooltip.style.visibility = 'visible'; // Show tooltip
+      tooltip.style.opacity = '1'; // Fade in tooltip
+      tooltip.style.left = `${event.pageX + 10}px`; // Position relative to mouse (x-axis)
+      tooltip.style.top = `${event.pageY + 10}px`; // Position relative to mouse (y-axis)
     });
+
+    // Event listener to hide tooltip when mouse leaves
     pill.addEventListener('mouseleave', () => {
       tooltip.style.visibility = 'hidden'; // Hide tooltip
+      tooltip.style.opacity = '0'; // Fade out tooltip
     });
 
     // Event listener to open the SourceURI in a new tab on click
     pill.addEventListener('click', () => {
-      window.open(role.SourceURI, '_blank');
+      console.log(`Role clicked: ${role.roleName}`);
+      console.log(`Source URI: ${role.SourceURI}`);
+      window.open(role.SourceURI, '_blank'); // Open SourceURI in a new tab
     });
 
     // Append pill and tooltip to the role container

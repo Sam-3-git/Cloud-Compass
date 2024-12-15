@@ -37,7 +37,8 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: flex-start; /* Align items to the left */
-  margin: 10px 0;
+  margin-bottom: 10px;
+  margin-top: 2px;
 }
 
 /* Styling the label */

@@ -31,28 +31,17 @@ body, html {
 }
 
 
-/* General container */
-.container {
-  margin: 5px;
-  padding: 20px;
-  width: auto;
-  height: 100%;
-  display: flex;
-  background-color: #2e2e2e; /* Dark grey background */
-  border-radius: 15px; /* Rounded corners */
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Toggle container */
-.toggle-container {
+/* Styling the toggle container */
+.toggle-switch {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: flex-start; /* Align items to the left */
+  margin: 10px 0;
 }
 
+/* Styling the label */
 .toggle-label {
-  margin-right: 10px;
+  margin-right: 10px; /* Space between label and switch */
   font-size: 14px;
   color: #ffffff; /* White text for high visibility */
   font-weight: bold; /* Make text stand out more */
@@ -68,6 +57,7 @@ body, html {
   height: 20px;
 }
 
+/* Hide the default checkbox */
 .switch input {
   opacity: 0;
   width: 0;
@@ -80,6 +70,8 @@ body, html {
   cursor: pointer;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 40px;  /* Slightly larger for better fit */
   height: 20px;
   background-color: #ccc;

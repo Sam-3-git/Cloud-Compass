@@ -1,9 +1,22 @@
 /* Header container for title and icon */
 .header {
+  gap: 15px;
   display: flex;
   margin-top: 10px;
-  align-items: center;
   margin-bottom: 10px;
+  align-items: left;
+  border-left: 5px solid #0078D4;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Header container for title styling */
+.header span {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #FFD700;
 }
 
 .icon {

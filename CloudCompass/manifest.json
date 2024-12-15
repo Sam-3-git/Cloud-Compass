@@ -12,7 +12,7 @@
     }
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "scripts/background.js"
   },
   "permissions": [
     "activeTab",
@@ -25,7 +25,7 @@
         "*://portal.azure.com/*",
         "*://portal.azure.us/*"
       ],
-      "js": ["content.js"]
+      "js": ["scripts/content.js"]
     }
   ],
   "host_permissions": [

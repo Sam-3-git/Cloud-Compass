@@ -13,6 +13,7 @@
 
 /* Header container for title styling */
 .header span {
+  white-space: nowrap;
   font-family: 'Segoe UI', sans-serif;
   font-size: 1.5em;
   font-weight: bold;
@@ -26,7 +27,7 @@
 }
 
 body, html {
-  width: auto;
+  width: 100%;
   background-color: #2e2e2e; /* Dark grey background */
 }
 
@@ -41,7 +42,7 @@ body, html {
 
 /* Styling the label */
 .toggle-label {
-  margin-right: 10px; /* Space between label and switch */
+  margin-right: 5px; /* Space between label and switch */
   font-size: 14px;
   color: #ffffff; /* White text for high visibility */
   font-weight: bold; /* Make text stand out more */

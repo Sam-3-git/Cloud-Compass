@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "ES6",            // JavaScript version to output
+      "module": "ESNext",         // Module system to use
+      "strict": true,             // Enable all strict type-checking options
+      "esModuleInterop": true,    // Import compatibility for CommonJS modules
+      "skipLibCheck": true,       // Skip type checks for dependencies
+      "outDir": "./dist",         // Output directory for compiled files
+      "rootDir": "./scripts"      // Directory containing your TypeScript files
+    },
+    "include": ["scripts/**/*.ts"] // Include all TypeScript files in the scripts folder
+  }
+  

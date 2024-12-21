@@ -54,3 +54,15 @@ h1 {
   border-top: 1px solid #aaa; /* Light gray color */
   margin: 10px 0;
 }
+
+/* Overlay section */
+.overlay-section {
+  padding: 10px;
+  width: 100%;
+}
+
+.overlay-title {
+  font-size: 0.9em; /* Smaller text size */
+  margin: 0;
+  color: #f1eded;
+}

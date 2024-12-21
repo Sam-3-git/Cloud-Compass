@@ -15,5 +15,3 @@ chrome.runtime.onInstalled.addListener((): void => {
     })
     .catch((error: Error) => console.error("Error fetching RBAC data:", error));
 });
-
-export const placeholder = true;

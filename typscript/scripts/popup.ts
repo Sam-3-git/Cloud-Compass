@@ -46,6 +46,17 @@ function displaySearchResults(data: RoleData): void {
   });
 }
 
+// Function to load and display all roles initially
+function loadInitialRoles(): void {
+  chrome.storage.local.get("roleData", (result) => {
+    const roleData: RoleData = result.roleData; // Use the dynamic RoleData interface
+    displaySearchResults(roleData); // Display all roles initially
+  });
+}
+
 // Add event listener to search bar
 const searchBar = document.getElementById("search-bar") as HTMLInputElement;
 searchBar.addEventListener("input", handleSearchInput); // Listen for input events on the search bar
+
+// Load and display roles on popup load
+loadInitialRoles();

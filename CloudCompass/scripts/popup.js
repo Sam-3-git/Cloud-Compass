@@ -4,9 +4,15 @@ function handleSearchInput(event) {
     // Get RBAC data from local storage
     chrome.storage.local.get("roleData", (result) => {
         const roleData = result.roleData; // Use the dynamic RoleData interface
-        // Filter the role data based on the query (assuming the search is done on role names)
+        // Filter the role data based on the query (search only roleName and description)
         const filteredData = Object.keys(roleData)
-            .filter((key) => key.toLowerCase().includes(query)) // Search by role key
+            .filter((key) => {
+            const role = roleData[key];
+            // Check if roleName or description contains the query string
+            const roleNameMatch = role.roleName.toLowerCase().includes(query);
+            const descriptionMatch = role.description.toLowerCase().includes(query);
+            return roleNameMatch || descriptionMatch;
+        })
             .reduce((obj, key) => {
             obj[key] = roleData[key]; // Add the matching key-value pairs to a new object
             return obj;
@@ -26,7 +32,7 @@ function displaySearchResults(data) {
     // Loop through filtered data and append to results container
     Object.keys(data).forEach((key) => {
         const resultElement = document.createElement("div");
-        resultElement.textContent = `${key}: ${JSON.stringify(data[key])}`; // Display key-value pair
+        resultElement.textContent = `${data[key].roleName}: ${data[key].description}`; // Display roleName and description
         resultsContainer.appendChild(resultElement);
     });
 }

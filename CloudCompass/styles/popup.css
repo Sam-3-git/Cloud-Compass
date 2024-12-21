@@ -142,3 +142,20 @@ input:checked + .slider:before {
   color: #333;
   box-sizing: border-box; /* Ensure padding is included in width calculation */
 }
+
+/* Style for the search results container */
+.search-results {
+  width: 100%;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  margin-top: 10px;
+  max-height: 150px; /* Limit the height for scrollability */
+  overflow-y: auto;
+}
+
+.search-results div {
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 1em;
+}

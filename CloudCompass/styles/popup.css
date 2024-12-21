@@ -179,8 +179,7 @@ input:checked + .slider:before {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  white-space: nowrap; /* allow text wrap */
-  overflow: hidden;
+  white-space: nowrap;
 }
 
 /* On hover, change the background color and show description */

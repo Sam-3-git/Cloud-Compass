@@ -180,7 +180,7 @@ input:checked + .slider:before {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  white-space: normal; /* allow text wrap */
+  white-space: nowrap; /* allow text wrap */
   overflow: hidden;
   display: block;
 }

@@ -1,10 +1,8 @@
 // This script will fetch the JSON from GitHub when the extension starts
 const jsonUrl: string = 'https://raw.githubusercontent.com/Sam-3-git/Cloud-Compass/refs/heads/main/webscraper/AzureRoleAdvisor.json';
 
-// Define the expected structure of the JSON data
-interface RoleData {
-  [key: string]: any;
-}
+// Import type for RoleData
+import { RoleData } from './types';
 
 // Fetch JSON data when the extension is installed
 chrome.runtime.onInstalled.addListener((): void => {

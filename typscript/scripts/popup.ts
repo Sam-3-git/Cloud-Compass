@@ -1,7 +1,5 @@
-// Define the structure of the role data as dynamic key-value pairs
-interface RoleData {
-    [key: string]: any;
-  }
+// Import type for RoleData
+import { RoleData } from './types';
   
   // Function to handle search input and filter data
   function handleSearchInput(event: Event): void {

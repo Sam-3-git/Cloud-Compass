@@ -155,7 +155,7 @@ input:checked + .slider:before {
 }
 
 .search-results div {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   color: #333;
   font-size: 1em;
 }

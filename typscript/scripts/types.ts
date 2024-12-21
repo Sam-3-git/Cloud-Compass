@@ -2,3 +2,5 @@
 export interface RoleData {
     [key: string]: any;
   }
+
+  export const placeholder = true;

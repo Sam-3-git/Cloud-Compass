@@ -44,3 +44,4 @@ import { RoleData } from './types';
   const searchBar = document.getElementById("search-bar") as HTMLInputElement;
   searchBar.addEventListener("input", handleSearchInput); // Listen for input events on the search bar
   
+  export const placeholder = true;

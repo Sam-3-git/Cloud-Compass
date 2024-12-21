@@ -154,7 +154,7 @@ input:checked + .slider:before {
   margin-bottom: 10px;
   max-height: 150px; /* Limit the height for scrollability */
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: auto;
   scrollbar-width: thin;
   scroll-behavior: smooth;
   box-sizing: border-box;

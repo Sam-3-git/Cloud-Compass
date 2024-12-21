@@ -10,6 +10,38 @@ body {
   background-color: #f4f4f4; /* Light background for readability */
 }
 
+/* Styles for the content container */
 .content {
-  text-align: center;
+  display: flex;
+  align-items: center; /* Align icon and text vertically */
+  padding: 10px;
+  width: 100%;
+}
+
+/* Icon container styles */
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Spacing between icon and text */
+}
+
+/* Vertical line */
+.vertical-line {
+  width: 4px;
+  height: 48px; /* Match the icon height */
+  background-color: #0078D4; /* Azure blue */
+  margin-right: 8px; /* Space between line and icon */
+}
+
+/* Icon image */
+.icon {
+  width: 48px;
+  height: 48px;
+}
+
+/* Heading styles */
+h1 {
+  font-size: 1.5em;
+  margin: 0;
+  color: #333;
 }

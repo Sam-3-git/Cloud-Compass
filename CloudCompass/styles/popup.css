@@ -181,7 +181,6 @@ input:checked + .slider:before {
   transition: background-color 0.3s ease, transform 0.3s ease;
   white-space: nowrap; /* allow text wrap */
   overflow: hidden;
-  display: block;
 }
 
 /* On hover, change the background color and show description */

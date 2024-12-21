@@ -2,7 +2,7 @@
 body {
   margin: 0;
   width: 400px;
-  height: 200px;
+  height: auto;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column; /* Arrange items vertically */

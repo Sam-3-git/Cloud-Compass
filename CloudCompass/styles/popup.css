@@ -134,7 +134,7 @@ input:checked + .slider:before {
 
 .search-input {
   width: 100%;
-  max-width: 350px; /* Limit the maximum width */
+  max-width: 380px; /* Limit the maximum width */
   padding: 8px;
   font-size: 1em;
   border: 1px solid #ccc;
@@ -147,6 +147,7 @@ input:checked + .slider:before {
 /* Style for the search results container */
 .search-results {
   width: 100%;
+  max-width: 380px;
   padding: 8px;
   margin-left: 10px;
   background-color: #f9f9f9;

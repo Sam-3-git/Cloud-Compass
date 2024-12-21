@@ -162,7 +162,7 @@ input:checked + .slider:before {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap;
-  column-gap: normal; /* Add spacing between the pills to ensure each pill has its own line */
+  gap: 10px; /* Add spacing between the pills to ensure each pill has its own line */
 }
 
 .search-results div {
@@ -173,9 +173,7 @@ input:checked + .slider:before {
 
 /* Individual pill-style role items */
 .search-results .role-pill {
-  display: inline-block;
   padding: 10px 15px;
-  margin: 5px;
   background-color: #0078d4; /* Azure blue */
   color: #fff;
   border-radius: 20px; /* Pill shape */
@@ -184,6 +182,7 @@ input:checked + .slider:before {
   transition: background-color 0.3s ease, transform 0.3s ease;
   white-space: nowrap; /* Prevent text overflow */
   overflow: hidden;
+  min-width: 100px; /* Minimum width for each pill */
 }
 
 /* On hover, change the background color and show description */
@@ -200,6 +199,7 @@ input:checked + .slider:before {
   font-size: 12px;
   color: #ddd;
   text-align: center;
+  white-space: nowrap;
 }
 
 /* Show the description when hovering over the pill */

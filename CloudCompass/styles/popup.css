@@ -122,3 +122,21 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(14px);
 }
+
+/* Search bar section */
+.search-section {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  color: #333;
+}

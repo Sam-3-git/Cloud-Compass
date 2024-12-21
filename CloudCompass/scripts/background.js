@@ -11,4 +11,4 @@ chrome.runtime.onInstalled.addListener(() => {
     })
         .catch((error) => console.error("Error fetching RBAC data:", error));
 });
-export {};
+//export {}; this got added when i compiled... idk why

@@ -173,13 +173,14 @@ input:checked + .slider:before {
 /* Individual pill-style role items */
 .search-results .role-pill {
   padding: 10px 15px;
+  display: inline-block;
   background-color: #0078d4; /* Azure blue */
   color: #fff;
   border-radius: 20px; /* Pill shape */
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  white-space: nowrap;
+  white-space: break-spaces;
 }
 
 /* On hover, change the background color and show description */

@@ -1,48 +1,36 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const toggleContent = document.getElementById('toggleContent');
-  const searchBar = document.getElementById('search-bar');
-  const roleBar = document.getElementById('roleBar');
-  
-  // Handle content script toggle
-  toggleContent.addEventListener('change', function () {
-    if (toggleContent.checked) {
-      chrome.scripting.executeScript({
-        target: { tabId: chrome.tabs.TAB_ID },  // Ensure this targets the correct tab
-        function: enableContentScript
-      });
-    } else {
-      // Optionally handle disabling content script
-    }
-  });
-
-  // Function to enable content script
-  function enableContentScript() {
-    console.log('Content script enabled!');
-    // Insert logic for content.js here
-  }
-
-  // Search bar functionality
-  searchBar.addEventListener('input', function () {
-    const query = searchBar.value.toLowerCase();
-    const pills = roleBar.querySelectorAll('.pill');
-    pills.forEach(pill => {
-      const pillText = pill.textContent.toLowerCase();
-      pill.style.display = pillText.includes(query) ? 'block' : 'none';
+// Function to handle search input and filter data
+function handleSearchInput(event) {
+    const query = event.target.value.toLowerCase(); // Get the input and convert to lowercase
+    // Get RBAC data from local storage
+    chrome.storage.local.get("roleData", (result) => {
+        const roleData = result.roleData; // Use the dynamic RoleData interface
+        // Filter the role data based on the query (assuming the search is done on role names)
+        const filteredData = Object.keys(roleData)
+            .filter((key) => key.toLowerCase().includes(query)) // Search by role key
+            .reduce((obj, key) => {
+            obj[key] = roleData[key]; // Add the matching key-value pairs to a new object
+            return obj;
+        }, {}); // Create a new object to hold the filtered data
+        // Update the UI with filtered results
+        displaySearchResults(filteredData);
     });
-  });
-
-  // Example: Fetch roles data (mock example)
-  const mockData = [
-    { roleName: 'Contributor' },
-    { roleName: 'Reader' },
-    { roleName: 'Owner' }
-  ];
-
-  // Display pills based on data
-  mockData.forEach(role => {
-    const pill = document.createElement('div');
-    pill.classList.add('pill');
-    pill.textContent = role.roleName;
-    roleBar.appendChild(pill);
-  });
-});
+}
+// Function to display search results
+function displaySearchResults(data) {
+    const resultsContainer = document.getElementById("search-results");
+    resultsContainer.innerHTML = ""; // Clear previous results
+    if (Object.keys(data).length === 0) {
+        resultsContainer.innerHTML = "<p>No roles found.</p>";
+        return;
+    }
+    // Loop through filtered data and append to results container
+    Object.keys(data).forEach((key) => {
+        const resultElement = document.createElement("div");
+        resultElement.textContent = `${key}: ${JSON.stringify(data[key])}`; // Display key-value pair
+        resultsContainer.appendChild(resultElement);
+    });
+}
+// Add event listener to search bar
+const searchBar = document.getElementById("search-bar");
+searchBar.addEventListener("input", handleSearchInput); // Listen for input events on the search bar
+export {};

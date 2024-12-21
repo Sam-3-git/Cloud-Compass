@@ -162,7 +162,7 @@ input:checked + .slider:before {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-wrap: wrap;
-  gap: 380px; /* Add spacing between the pills to ensure each pill has its own line */
+  column-gap: normal; /* Add spacing between the pills to ensure each pill has its own line */
 }
 
 .search-results div {

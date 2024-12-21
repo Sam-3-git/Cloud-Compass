@@ -1,119 +1,15 @@
-/* Header container for title and icon */
-.header {
-  gap: 15px;
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  align-items: left;
-  border-left: 5px solid #0078D4;
-  padding-left: 10px;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* Header container for title styling */
-.header span {
-  white-space: nowrap;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #FFD700;
-}
-
-.icon {
-  width: 20px; /* Adjust size to fit well */
-  height: 20px;
-  margin-right: 10px;
-}
-
-body, html {
-  width: 100%;
-  background-color: #2e2e2e; /* Dark grey background */
-}
-
-
-/* Styling the toggle container */
-.toggle-switch {
+/* Ensure the popup size is consistent */
+body {
+  margin: 0;
+  width: 400px;
+  height: 200px;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align items to the left */
-  margin-bottom: 10px;
-  margin-top: 2px;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4; /* Light background for readability */
 }
 
-/* Styling the label */
-.toggle-label {
-  margin-right: 5px; /* Space between label and switch */
-  font-size: 14px;
-  color: #ffffff; /* White text for high visibility */
-  font-weight: bold; /* Make text stand out more */
-  width: 100%; /* Ensure it fills the available space */
-  text-align: left; /* Align text to the left */
-}
-
-/* Toggle switch style */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 34px;
-  height: 20px;
-}
-
-/* Hide the default checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* Background behind the dot */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 40px;  /* Slightly larger for better fit */
-  height: 20px;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 50px; /* Smooth rounded edges */
-}
-
-/* The dot inside the slider */
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px; /* Keep this smaller for a nice contrast */
-  width: 16px;
-  border-radius: 50%;
-  background-color: white;
-  transition: 0.4s;
-  top: 2px; /* Keep centered vertically */
-  left: 2px; /* Keep centered horizontally */
-}
-
-/* When the toggle is on */
-input:checked + .slider {
-  background-color: #0078D4;
-}
-
-/* Move the dot to the right when checked */
-input:checked + .slider:before {
-  transform: translateX(20px);
-}
-
-/* Search bar style */
-.search-container {
-  width: 100%;
-  margin-top: 20px; /* Add spacing for better separation */
-}
-
-#search-bar {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.content {
+  text-align: center;
 }

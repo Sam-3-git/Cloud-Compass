@@ -46,3 +46,11 @@ h1 {
   margin: 0;
   color: #f1eded;
 }
+
+/* Horizontal line separator */
+.separator {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #aaa; /* Light gray color */
+  margin: 10px 0;
+}

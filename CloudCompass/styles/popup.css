@@ -160,9 +160,8 @@ input:checked + .slider:before {
   box-sizing: border-box;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* Add spacing between the pills to ensure each pill has its own line */
+  display: grid;
+  grid-row: auto;
 }
 
 .search-results div {

@@ -3,11 +3,12 @@ body {
   margin: 0;
   width: 400px;
   height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4; /* Light background for readability */
+  display: flex;
+  flex-direction: column; /* Arrange items vertically */
+  align-items: flex-start; /* Align items to the left */
+  justify-content: flex-start; /* Align items at the top */
+  background-color: #332b2b;
 }
 
 /* Styles for the content container */
@@ -43,5 +44,5 @@ body {
 h1 {
   font-size: 1.5em;
   margin: 0;
-  color: #333;
+  color: #f1eded;
 }

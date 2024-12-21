@@ -1,6 +1,5 @@
-// Import type for RoleData
 import { RoleData } from './types';
-  
+
 // Function to handle search input and filter data
 function handleSearchInput(event: Event): void {
   const query = (event.target as HTMLInputElement).value.toLowerCase(); // Get the input and convert to lowercase
@@ -8,21 +7,21 @@ function handleSearchInput(event: Event): void {
   // Get RBAC data from local storage
   chrome.storage.local.get("roleData", (result) => {
     const roleData: RoleData = result.roleData; // Use the dynamic RoleData interface
-  
-    // Filter the role data based on the query (search only roleName and description)
+
+    // Filter the role data based on the query (search by role name or description)
     const filteredData = Object.keys(roleData)
       .filter((key) => {
         const role = roleData[key];
-        // Check if roleName or description contains the query string
-        const roleNameMatch = role.roleName.toLowerCase().includes(query);
-        const descriptionMatch = role.description.toLowerCase().includes(query);
-        return roleNameMatch || descriptionMatch;
+        return (
+          role.roleName.toLowerCase().includes(query) || 
+          (role.description && role.description.toLowerCase().includes(query))
+        );
       })
       .reduce((obj, key) => {
         obj[key] = roleData[key]; // Add the matching key-value pairs to a new object
         return obj;
       }, {} as RoleData); // Create a new object to hold the filtered data
-  
+
     // Update the UI with filtered results
     displaySearchResults(filteredData);
   });
@@ -40,8 +39,17 @@ function displaySearchResults(data: RoleData): void {
 
   // Loop through filtered data and append to results container
   Object.keys(data).forEach((key) => {
+    const role = data[key];
     const resultElement = document.createElement("div");
-    resultElement.textContent = `${data[key].roleName}: ${data[key].description}`; // Display roleName and description
+
+    // Create a link for the SourceURI that opens in a new tab
+    const linkElement = document.createElement("a");
+    linkElement.href = role.SourceURI;
+    linkElement.target = "_blank"; // Open the link in a new tab
+    linkElement.textContent = `${role.roleName}: ${role.description}`;
+    
+    // Append the link to the result container
+    resultElement.appendChild(linkElement);
     resultsContainer.appendChild(resultElement);
   });
 }

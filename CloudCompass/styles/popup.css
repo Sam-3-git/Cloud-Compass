@@ -67,14 +67,13 @@ h1 {
 .overlay-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .overlay-title {
   font-size: 1.1em;
   margin: 0;
   color: #f1eded;
+  margin-right: 10px; /* Space between the text and the toggle */
 }
 
 /* Toggle switch */

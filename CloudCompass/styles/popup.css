@@ -154,12 +154,15 @@ input:checked + .slider:before {
   margin-bottom: 10px;
   max-height: 150px; /* Limit the height for scrollability */
   overflow-y: scroll;
-  overflow-x: auto;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scroll-behavior: smooth;
   box-sizing: border-box;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px; /* Add spacing between the pills */
 }
 
 .search-results div {

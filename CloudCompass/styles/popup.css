@@ -161,7 +161,7 @@ input:checked + .slider:before {
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px; /* Add spacing between the pills to ensure each pill has its own line */
 }
 
@@ -180,9 +180,9 @@ input:checked + .slider:before {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  white-space: nowrap; /* Prevent text overflow */
+  white-space: normal; /* allow text wrap */
   overflow: hidden;
-  min-width: 100px; /* Minimum width for each pill */
+  display: block;
 }
 
 /* On hover, change the background color and show description */
@@ -194,12 +194,11 @@ input:checked + .slider:before {
 /* Hidden description, shown on hover */
 .search-results .role-pill .description {
   display: none;
-  max-width: 380px;
   padding-top: 5px;
   font-size: 12px;
   color: #ddd;
   text-align: center;
-  white-space: nowrap;
+  word-wrap: break-word;
 }
 
 /* Show the description when hovering over the pill */

@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "target": "ES6",                      // JavaScript version to output
-      "module": "ESNext",                   // Module system to use
+      "module": "none",                     // get rid of export{} in bottom of compiled scripts
       "moduleResolution": "Node",           // Module resolution strategy
       "types": ["chrome"],                  // Needed for chrome API
       "strict": true,                       // Enable all strict type-checking options

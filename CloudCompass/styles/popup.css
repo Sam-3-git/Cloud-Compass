@@ -145,13 +145,13 @@ input:checked + .slider:before {
 
 /* Style for the search results container */
 .search-results {
-  width: 100%;
+  width: 99%;
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 4px;
   margin-top: 10px;
   max-height: 150px; /* Limit the height for scrollability */
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
 }
 

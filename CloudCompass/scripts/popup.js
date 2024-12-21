@@ -30,15 +30,23 @@ function displaySearchResults(data) {
     // Loop through filtered data and append to results container
     Object.keys(data).forEach((key) => {
         const role = data[key];
-        const resultElement = document.createElement("div");
-        // Create a link for the SourceURI that opens in a new tab
-        const linkElement = document.createElement("a");
-        linkElement.href = role.SourceURI;
-        linkElement.target = "_blank"; // Open the link in a new tab
-        linkElement.textContent = `${role.roleName}: ${role.description}`;
-        // Append the link to the result container
-        resultElement.appendChild(linkElement);
-        resultsContainer.appendChild(resultElement);
+        // Create a pill for each role
+        const pillElement = document.createElement("div");
+        pillElement.classList.add("role-pill");
+        // Set role name as pill text
+        pillElement.textContent = role.roleName;
+        // Create description and hide by default
+        const descriptionElement = document.createElement("div");
+        descriptionElement.classList.add("description");
+        descriptionElement.textContent = role.description;
+        // Append description to the pill
+        pillElement.appendChild(descriptionElement);
+        // Add click event to open the help article link
+        pillElement.addEventListener("click", () => {
+            window.open(role.SourceURI, "_blank");
+        });
+        // Append the pill to the result container
+        resultsContainer.appendChild(pillElement);
     });
 }
 // Function to load and display all roles initially

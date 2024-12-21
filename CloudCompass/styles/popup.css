@@ -158,6 +158,8 @@ input:checked + .slider:before {
   scrollbar-width: thin;
   scroll-behavior: smooth;
   box-sizing: border-box;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search-results div {

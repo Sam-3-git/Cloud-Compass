@@ -146,8 +146,9 @@ input:checked + .slider:before {
 
 /* Style for the search results container */
 .search-results {
-  width: 90%;
-  padding: 10px;
+  width: 100%;
+  padding: 8px;
+  margin-left: 10px;
   background-color: #f9f9f9;
   border-radius: 4px;
   margin-top: 10px;
@@ -156,6 +157,7 @@ input:checked + .slider:before {
   overflow-x: hidden;
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 .search-results div {

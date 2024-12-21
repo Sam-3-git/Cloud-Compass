@@ -161,7 +161,7 @@ input:checked + .slider:before {
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: wrap;
+  flex-wrap: wrap;
   gap: 10px; /* Add spacing between the pills to ensure each pill has its own line */
 }
 

@@ -4,7 +4,7 @@ const jsScriptDir = path.join(__dirname, '../CloudCompass/scripts');
 const files = fs.readdirSync(jsScriptDir);
 
 // Read all files in the directory
-const file = fs.readdirSync(compiledDir);
+const file = fs.readdirSync(jsScriptDir);
 
 if (file.endsWith('.js')) {
     let content = fs.readFileSync(filePath, 'utf8');

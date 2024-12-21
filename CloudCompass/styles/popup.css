@@ -62,7 +62,6 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #d3d3d3; /* Light gray horizontal line */
 }
 
 .overlay-row {
@@ -86,6 +85,7 @@ h1 {
   height: 20px;
 }
 
+/* Hides box */
 .switch input {
   opacity: 0;
   width: 0;

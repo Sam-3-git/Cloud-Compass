@@ -113,3 +113,6 @@ searchBar.addEventListener("input", handleSearchInput); // Listen for input even
 
 // Load and display roles on popup load
 loadInitialRoles();
+
+// Initialize the overlay switch
+handleOverlaySwitch();

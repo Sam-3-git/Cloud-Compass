@@ -1,3 +1,4 @@
+"use strict";
 // Function to inject the role bar
 function injectRoleBar(roles) {
     console.log("Injecting role bar...");
@@ -80,17 +81,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log("Message received in content script:", message);
     if (message.action === 'toggleOverlay') {
         if (message.enabled) {
-            console.log("Overlay enabled. Retrieving role data from local storage...");
-            // Get RBAC data from local storage
-            chrome.storage.local.get("roleData", (result) => {
-                const roleData = result.roleData; // Get role data from local storage
-                if (roleData) {
-                    console.log("Injecting role bar with local storage data.");
-                    injectRoleBar(roleData); // Inject the role bar with the local storage data
-                }
-                else {
-                    console.error("No role data found in local storage.");
-                }
+            console.log("Overlay enabled. Fetching roles...");
+            // Fetch and inject the role bar
+            fetch('https://raw.githubusercontent.com/Sam-3-git/Azure-RoleAdvisor/main/webscraper/AzureRoleAdvisor.json')
+                .then(response => response.json())
+                .then(data => {
+                injectRoleBar(data);
+            })
+                .catch(error => {
+                console.error("Error fetching roles:", error);
             });
         }
         else {
@@ -99,4 +98,3 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
     }
 });
-// export {};

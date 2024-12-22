@@ -1,116 +1,102 @@
+// Function to inject the role bar
 function injectRoleBar(roles) {
-  console.log("Injecting role bar...");
-
-  // Create the role bar container
-  const roleBar = document.createElement('div');
-  roleBar.classList.add('role-bar');
-  roleBar.id = 'roleBar';
-
-  // Apply styles to the role bar for testing
-  roleBar.style.position = 'fixed'; // Fixed position at the top
-  roleBar.style.top = '0';
-  roleBar.style.left = '0';
-  roleBar.style.width = '100%';
-  roleBar.style.backgroundColor = '#0078D4'; // Azure blue
-  roleBar.style.padding = '5px 0'; // Decrease padding for smaller bar height
-  roleBar.style.zIndex = '9999'; // Ensure it stays on top of everything
-  roleBar.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)'; // Add shadow for visibility
-  roleBar.style.overflowX = 'auto'; // Enable horizontal scrolling
-  roleBar.style.whiteSpace = 'nowrap'; // Prevent wrapping of pills
-  roleBar.style.display = 'block'; // Explicitly make sure it's displayed (instead of none)
-  roleBar.style.transition = 'display 0.3s'; // Smooth transition for show/hide effect
-  roleBar.style.height = '50px'; // Set a fixed height for the role bar
-  roleBar.style.marginBottom = '10px'; // Add space between role bar and the rest of the page
-
-  // Create a container for the pills
-  const roleContainer = document.createElement('div');
-  roleContainer.classList.add('role-container');
-
-  // Create role pills for each role
-  roles.forEach(role => {
-    const pill = document.createElement('div');
-    pill.classList.add('role-pill');
-    pill.textContent = role.roleName; // Show full role name
-    pill.style.margin = '5px'; // Add some margin between pills for spacing
-    pill.style.padding = '3px 8px'; // Decrease padding for smaller pills
-    pill.style.borderRadius = '15px'; // Round the corners a bit more
-    pill.style.backgroundColor = getRandomColor(); // Use a random color for each pill
-    pill.style.cursor = 'pointer'; // Make pills clickable
-    pill.style.color = 'white'; // Text color
-    pill.style.fontSize = '12px'; // Smaller font size
-    pill.style.display = 'inline-block'; // Ensure pill is inline and takes up only the required space
-    pill.style.position = 'relative'; // Ensure tooltip positioning works relative to the pill
-
-    // Tooltip for description
-    const tooltip = document.createElement('div');
-    tooltip.classList.add('role-pill-tooltip');
-    tooltip.textContent = role.description;
-    tooltip.style.position = 'absolute';
-    tooltip.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
-    tooltip.style.color = 'white';
-    tooltip.style.padding = '5px 10px';
-    tooltip.style.borderRadius = '5px';
-    tooltip.style.visibility = 'hidden'; // Hide the tooltip by default
-    tooltip.style.transition = 'visibility 0.2s, opacity 0.2s'; // Smooth transition for visibility and opacity
-    tooltip.style.opacity = '0'; // Start with opacity 0
-    tooltip.style.zIndex = '99999'; // Ensure tooltip appears on top of other elements
-
-    // Event listener to show tooltip on hover
-    pill.addEventListener('mouseenter', (event) => {
-      tooltip.style.visibility = 'visible'; // Show tooltip
-      tooltip.style.opacity = '1'; // Fade in tooltip
-      tooltip.style.left = `${event.pageX + 10}px`; // Position relative to mouse (x-axis)
-      tooltip.style.top = `${event.pageY + 10}px`; // Position relative to mouse (y-axis)
-      document.body.appendChild(tooltip); // Append tooltip to the body to avoid it being trapped
+    console.log("Injecting role bar...");
+    // Check if the role bar already exists, to avoid duplicates
+    const existingRoleBar = document.getElementById('roleBar');
+    if (existingRoleBar) {
+        console.log("Role bar already exists. Skipping injection.");
+        return;
+    }
+    // Create the role bar container
+    const roleBar = document.createElement('div');
+    roleBar.classList.add('role-bar');
+    roleBar.id = 'roleBar';
+    // Apply styles to the role bar
+    roleBar.style.position = 'fixed';
+    roleBar.style.top = '0';
+    roleBar.style.left = '0';
+    roleBar.style.width = '100%';
+    roleBar.style.backgroundColor = '#0078D4';
+    roleBar.style.padding = '5px 0';
+    roleBar.style.zIndex = '9999';
+    roleBar.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)';
+    roleBar.style.overflowX = 'auto';
+    roleBar.style.whiteSpace = 'nowrap';
+    roleBar.style.height = '50px';
+    roleBar.style.marginBottom = '10px';
+    // Create a container for the pills
+    const roleContainer = document.createElement('div');
+    roleContainer.classList.add('role-container');
+    // Create role pills for each role
+    roles.forEach(role => {
+        const pill = document.createElement('div');
+        pill.classList.add('role-pill');
+        pill.textContent = role.roleName;
+        pill.style.margin = '5px';
+        pill.style.padding = '3px 8px';
+        pill.style.borderRadius = '15px';
+        pill.style.backgroundColor = getRandomColor();
+        pill.style.cursor = 'pointer';
+        pill.style.color = 'white';
+        pill.style.fontSize = '12px';
+        pill.style.display = 'inline-block';
+        // Add click event to open the SourceURI
+        pill.addEventListener('click', () => {
+            window.open(role.SourceURI, '_blank');
+        });
+        roleContainer.appendChild(pill);
     });
-
-    // Event listener to hide tooltip when mouse leaves
-    pill.addEventListener('mouseleave', () => {
-      tooltip.style.visibility = 'hidden'; // Hide tooltip
-      tooltip.style.opacity = '0'; // Fade out tooltip
-    });
-
-    // Event listener to open the SourceURI in a new tab on click
-    pill.addEventListener('click', () => {
-      console.log("Clicked pill: ", role); // Log the entire role object for debugging
-      console.log(`Role clicked: ${role.roleName}`);
-      console.log(`Source URI: ${role.SourceURI}`);
-      window.open(role.SourceURI, '_blank'); // Open SourceURI in a new tab
-    });
-
-    // Append pill to the role container
-    roleContainer.appendChild(pill);
-  });
-
-  // Append the role container to the role bar
-  roleBar.appendChild(roleContainer);
-
-  // Insert the role bar at the top of the page
-  const body = document.body;
-  body.insertBefore(roleBar, body.firstChild); // Insert it as the first child of the body
-  console.log("Role bar injected into the body.");
-
-  // Ensure the page content is visible beneath the role bar by adjusting the top margin
-  body.style.marginTop = '70px'; // Add top margin to the body to accommodate the role bar height
+    roleBar.appendChild(roleContainer);
+    // Insert the role bar at the top of the page
+    const body = document.body;
+    body.insertBefore(roleBar, body.firstChild);
+    // Adjust the body margin to prevent overlap
+    body.style.marginTop = '70px';
+    console.log("Role bar injected.");
 }
-
+// Function to remove the role bar
+function removeRoleBar() {
+    const roleBar = document.getElementById('roleBar');
+    if (roleBar) {
+        roleBar.remove();
+        document.body.style.marginTop = ''; // Reset the margin
+        console.log("Role bar removed.");
+    }
+    else {
+        console.log("No role bar to remove.");
+    }
+}
 // Function to generate random colors for pills
 function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
-
-// Fetch the roles data from the GitHub repository
-fetch('https://raw.githubusercontent.com/Sam-3-git/Azure-RoleAdvisor/main/webscraper/AzureRoleAdvisor.json')
-  .then(response => response.json()) // Parse the response as JSON
-  .then(data => {
-    console.log("Fetched data:", data); // Log the fetched data
-    injectRoleBar(data); // Inject the role bar with the roles data
-  })
-  .catch(error => {
-    console.error("Error fetching data:", error); // Log any errors
-  });
+// Listener for messages from popup
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.log("Message received in content script:", message);
+    if (message.action === 'toggleOverlay') {
+        if (message.enabled) {
+            console.log("Overlay enabled. Retrieving role data from local storage...");
+            // Get RBAC data from local storage
+            chrome.storage.local.get("roleData", (result) => {
+                const roleData = result.roleData; // Get role data from local storage
+                if (roleData) {
+                    console.log("Injecting role bar with local storage data.");
+                    injectRoleBar(roleData); // Inject the role bar with the local storage data
+                }
+                else {
+                    console.error("No role data found in local storage.");
+                }
+            });
+        }
+        else {
+            console.log("Overlay disabled.");
+            removeRoleBar(); // Remove the role bar
+        }
+    }
+});
+// export {};

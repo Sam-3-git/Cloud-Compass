@@ -206,7 +206,7 @@ input:checked + .slider:before {
 /* Show the description when hovering over the pill */
 .search-results .role-pill:hover .description {
   display: block;
-  width: max-content;
+  width: min-content;
 }
 
 /* Scrollbar customization */

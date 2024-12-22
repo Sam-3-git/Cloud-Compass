@@ -75,7 +75,10 @@ function handleOverlaySwitch() {
         // Send a message to content.js
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             if (tabs[0]) {
-                chrome.tabs.sendMessage(tabs[0].id, { action: isEnabled ? "enableUI" : "disableUI" }, () => console.log(`Message sent to content.js: ${isEnabled ? "enableUI" : "disableUI"}`));
+                chrome.tabs.sendMessage(tabs[0].id, {
+                    action: isEnabled ? "enableUI" : "disableUI",
+                    enabled: isEnabled // Added this to pass the enabled state
+                }, () => console.log(`Message sent to content.js: ${isEnabled ? "enableUI" : "disableUI"}, enabled: ${isEnabled}`));
             }
         });
     });
@@ -87,4 +90,5 @@ searchBar.addEventListener("input", handleSearchInput); // Listen for input even
 loadInitialRoles();
 // Initialize the overlay switch
 handleOverlaySwitch();
+console.log("Extension: Cloud Compass");
 // export {};

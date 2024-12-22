@@ -79,8 +79,8 @@ function getRandomColor() {
 // Listener for messages from popup
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log("Message received in content script:", message);
-    console.log("Message Action", message.action)
-    console.log("message.enabled", message.enabled)
+    console.log("Message Action in content script:", message.action);
+    console.log("Message Enabled in content script:", message.enabled);
     if (message.action === 'toggleOverlay') {
         if (message.enabled) {
             console.log("Overlay enabled. Fetching roles...");
@@ -100,3 +100,4 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         }
     }
 });
+console.log("Extension: Cloud Compass");

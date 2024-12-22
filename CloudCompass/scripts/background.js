@@ -11,4 +11,5 @@ chrome.runtime.onInstalled.addListener(() => {
     })
         .catch((error) => console.error("Error fetching RBAC data:", error));
 });
+console.log("Extension: Cloud Compass");
 // export {};

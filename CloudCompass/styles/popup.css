@@ -161,7 +161,8 @@ input:checked + .slider:before {
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-basis: content;
 }
 
 .search-results div {

@@ -160,7 +160,8 @@ input:checked + .slider:before {
   box-sizing: border-box;
   border: 1px solid #ddd;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  display: list-item;
+  display: flex;
+  flex-direction: column;
   /*grid-template-columns: repeat(1, 1fr); /* 1 pills per row */
 }
 

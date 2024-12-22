@@ -56,6 +56,30 @@ function loadInitialRoles() {
         displaySearchResults(roleData); // Display all roles initially
     });
 }
+function handleOverlaySwitch() {
+    const overlaySwitch = document.getElementById("overlay-toggle");
+    // Restore the switch state from storage
+    chrome.storage.sync.get("uiEnabled", ({ uiEnabled }) => {
+        overlaySwitch.checked = uiEnabled || false; // Set the toggle based on stored state
+        console.log(`Overlay toggle restored to: ${overlaySwitch.checked ? "ON" : "OFF"}`);
+    });
+    // Add an event listener for toggle changes
+    overlaySwitch.addEventListener("change", (event) => {
+        const isEnabled = event.target.checked;
+        // Log the current state of the toggle
+        console.log(`Overlay toggle switched to: ${isEnabled ? "ON" : "OFF"}`);
+        // Save the new state
+        chrome.storage.sync.set({ uiEnabled: isEnabled }, () => {
+            console.log(`State saved: ${isEnabled ? "UI Enabled" : "UI Disabled"}`);
+        });
+        // Send a message to content.js
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            if (tabs[0]) {
+                chrome.tabs.sendMessage(tabs[0].id, { action: isEnabled ? "enableUI" : "disableUI" }, () => console.log(`Message sent to content.js: ${isEnabled ? "enableUI" : "disableUI"}`));
+            }
+        });
+    });
+}
 // Add event listener to search bar
 const searchBar = document.getElementById("search-bar");
 searchBar.addEventListener("input", handleSearchInput); // Listen for input events on the search bar

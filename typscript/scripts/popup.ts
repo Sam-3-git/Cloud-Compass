@@ -99,9 +99,12 @@ function handleOverlaySwitch(): void {
       if (tabs[0]) {
         chrome.tabs.sendMessage(
           tabs[0].id!,
-          { action: isEnabled ? "enableUI" : "disableUI" },
-          () => console.log(`Message sent to content.js: ${isEnabled ? "enableUI" : "disableUI"}`)
-        );
+          { 
+            action: isEnabled ? "enableUI" : "disableUI", 
+            enabled: isEnabled // Added this to pass the enabled state
+          },
+          () => console.log(`Message sent to content.js: ${isEnabled ? "enableUI" : "disableUI"}, enabled: ${isEnabled}`)
+        );        
       }
     });
   });
@@ -116,3 +119,4 @@ loadInitialRoles();
 
 // Initialize the overlay switch
 handleOverlaySwitch();
+console.log("Extension: Cloud Compass");

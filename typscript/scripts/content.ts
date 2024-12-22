@@ -90,7 +90,8 @@ function injectRoleBar(roles: any[]): void {
   // Listener for messages from popup
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log("Message received in content script:", message);
-  
+    console.log("Message Action in content script:", message.action);
+    console.log("Message Enabled in content script:", message.enabled);
     if (message.action === 'toggleOverlay') {
       if (message.enabled) {
         console.log("Overlay enabled. Fetching roles...");
@@ -109,4 +110,4 @@ function injectRoleBar(roles: any[]): void {
       }
     }
   });
-  
+  console.log("Extension: Cloud Compass");

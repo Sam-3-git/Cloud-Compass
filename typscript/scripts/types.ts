@@ -2,3 +2,4 @@
 export interface RoleData {
     [key: string]: any;
   }
+  console.log("Extension: Cloud Compass");

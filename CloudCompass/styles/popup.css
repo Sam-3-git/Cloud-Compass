@@ -183,6 +183,7 @@ input:checked + .slider:before {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   white-space: break-spaces;
+  word-wrap: break-word;
 }
 
 /* On hover, change the background color and show description */

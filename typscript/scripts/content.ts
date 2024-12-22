@@ -92,7 +92,7 @@ function injectRoleBar(roles: any[]): void {
     console.log("Message received in content script:", message);
     console.log("Message Action in content script:", message.action);
     console.log("Message Enabled in content script:", message.enabled);
-    if (message.action === 'toggleOverlay') {
+    if (message.action === 'enableUI') {
       if (message.enabled) {
         console.log("Overlay enabled. Fetching roles...");
         // Fetch and inject the role bar

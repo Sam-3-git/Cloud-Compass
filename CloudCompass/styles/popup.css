@@ -195,7 +195,7 @@ input:checked + .slider:before {
 /* Hidden description, shown on hover */
 .search-results .role-pill .description {
   display: none;
-  width: max-content;
+  width: min-content;
   padding-top: 5px;
   font-size: 12px;
   color: #ddd;

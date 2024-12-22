@@ -158,7 +158,7 @@ input:checked + .slider:before {
   scrollbar-width: thin;
   scroll-behavior: smooth;
   box-sizing: border-box;
-  border: 1px solid #ddd;
+  border: 1px solid #888080;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;

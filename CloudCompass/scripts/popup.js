@@ -85,4 +85,6 @@ const searchBar = document.getElementById("search-bar");
 searchBar.addEventListener("input", handleSearchInput); // Listen for input events on the search bar
 // Load and display roles on popup load
 loadInitialRoles();
+// Initialize the overlay switch
+handleOverlaySwitch();
 // export {};

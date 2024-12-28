@@ -1,142 +1,123 @@
 "use strict";
-// Function to inject the role bar
-function injectRoleBar(roles) {
-    console.log("Injecting role bar...");
-    // Check if the role bar already exists, to avoid duplicates
-    const existingRoleBar = document.getElementById("roleBar");
-    if (existingRoleBar) {
-        console.log("Role bar already exists. Skipping injection.");
+console.log("Extension: Cloud Compass");
+// Function to add the Cloud Compass element
+function addCloudCompassElement() {
+    var _a, _b;
+    const azureHeading = document.querySelector('h1');
+    if (!azureHeading || ((_a = azureHeading.textContent) === null || _a === void 0 ? void 0 : _a.trim()) !== "Microsoft Azure") {
+        console.warn("Azure heading not found or text mismatch. Element will not be added.");
         return;
     }
-    // Create the role bar container
-    const roleBar = document.createElement("div");
-    roleBar.classList.add("role-bar");
-    roleBar.id = "roleBar";
-    // Apply styles to the role bar
-    roleBar.style.position = "fixed";
-    roleBar.style.top = "0";
-    roleBar.style.left = "0";
-    roleBar.style.width = "100%";
-    roleBar.style.backgroundColor = "#0078D4";
-    roleBar.style.padding = "5px 0";
-    roleBar.style.zIndex = "9999";
-    roleBar.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
-    roleBar.style.overflowX = "auto";
-    roleBar.style.whiteSpace = "nowrap";
-    roleBar.style.height = "50px";
-    roleBar.style.marginBottom = "10px";
-    // Create a container for the pills
-    const roleContainer = document.createElement("div");
-    roleContainer.classList.add("role-container");
-    // Create role pills for each role
-    roles.forEach(role => {
-        const pill = document.createElement("div");
-        pill.classList.add("role-pill");
-        pill.textContent = role.roleName;
-        pill.style.margin = "5px";
-        pill.style.padding = "3px 8px";
-        pill.style.borderRadius = "15px";
-        pill.style.backgroundColor = getRandomColor();
-        pill.style.cursor = "pointer";
-        pill.style.color = "white";
-        pill.style.fontSize = "12px";
-        pill.style.display = "inline-block";
-        // Add click event to open the SourceURI
-        pill.addEventListener("click", () => {
-            window.open(role.SourceURI, "_blank");
-        });
-        roleContainer.appendChild(pill);
+    // Check if the element already exists
+    const existingElement = document.getElementById("cloud-compass");
+    if (existingElement) {
+        console.info("Cloud Compass element already exists. Skipping creation.");
+        return;
+    }
+    // Create the Cloud Compass container
+    const compassContainer = document.createElement("div");
+    compassContainer.id = "cloud-compass";
+    compassContainer.style.display = "inline-flex";
+    compassContainer.style.alignItems = "center";
+    compassContainer.style.marginLeft = "10px"; // Adjust spacing to the right of the Azure heading
+    compassContainer.style.cursor = "pointer"; // Change cursor to pointer (clickable)
+    // Add text to the container
+    const text = document.createElement("span");
+    text.textContent = "Cloud Compass";
+    text.style.color = "#0078d4"; // Azure blue color
+    text.style.fontWeight = "bold";
+    text.style.fontSize = "16px";
+    compassContainer.appendChild(text);
+    // Create the tooltip for hover text
+    const tooltip = document.createElement("span");
+    tooltip.textContent = "Cloud Compass";
+    tooltip.style.position = "absolute";
+    tooltip.style.backgroundColor = "#333";
+    tooltip.style.color = "#fff";
+    tooltip.style.padding = "5px";
+    tooltip.style.borderRadius = "5px";
+    tooltip.style.visibility = "hidden"; // Hidden by default
+    tooltip.style.opacity = "0";
+    tooltip.style.transition = "visibility 0s, opacity 0.2s linear"; // Smooth fade-in/out
+    tooltip.style.zIndex = "1000"; // Ensure it's on top of other elements
+    compassContainer.appendChild(tooltip);
+    // Show tooltip on hover
+    compassContainer.addEventListener("mouseenter", () => {
+        tooltip.style.visibility = "visible";
+        tooltip.style.opacity = "1";
+        compassContainer.style.backgroundColor = "#f0f0f0"; // Change background on hover
     });
-    roleBar.appendChild(roleContainer);
-    // Insert the role bar at the top of the page
-    const body = document.body;
-    body.insertBefore(roleBar, body.firstChild);
-    // Adjust the body margin to prevent overlap
-    body.style.marginTop = "70px";
-    console.log("Role bar injected.");
+    // Hide tooltip and reset background when hover ends
+    compassContainer.addEventListener("mouseleave", () => {
+        tooltip.style.visibility = "hidden";
+        tooltip.style.opacity = "0";
+        compassContainer.style.backgroundColor = "transparent"; // Reset background
+    });
+    // Event listener for click (to show the pop-up box)
+    compassContainer.addEventListener("click", () => {
+        showPopupBox();
+    });
+    // Insert the container next to the Azure heading
+    azureHeading.style.display = "inline-flex";
+    azureHeading.style.alignItems = "center";
+    (_b = azureHeading.parentElement) === null || _b === void 0 ? void 0 : _b.insertBefore(compassContainer, azureHeading.nextSibling);
+    console.log("Cloud Compass element added successfully.");
 }
-// Function to remove the role bar
-function removeRoleBar() {
-    const roleBar = document.getElementById("roleBar");
-    if (roleBar) {
-        roleBar.remove();
-        document.body.style.marginTop = ""; // Reset the margin
-        console.log("Role bar removed.");
+// Function to remove the Cloud Compass element
+function removeCloudCompassElement() {
+    const compassElement = document.getElementById("cloud-compass");
+    if (compassElement) {
+        compassElement.remove();
+        console.log("Cloud Compass element removed successfully.");
     }
     else {
-        console.log("No role bar to remove.");
+        console.warn("No Cloud Compass element found to remove.");
     }
 }
-// Function to generate random colors for pills
-function getRandomColor() {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+// Function to create and show a small pop-up box
+function showPopupBox() {
+    // Create the pop-up box
+    const popupBox = document.createElement("div");
+    popupBox.id = "popup-box";
+    popupBox.style.position = "fixed";
+    popupBox.style.left = "50%";
+    popupBox.style.top = "50%";
+    popupBox.style.transform = "translate(-50%, -50%)";
+    popupBox.style.padding = "20px";
+    popupBox.style.backgroundColor = "#fff";
+    popupBox.style.border = "1px solid #ccc";
+    popupBox.style.borderRadius = "8px";
+    popupBox.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+    popupBox.style.zIndex = "1001"; // Ensure it's above other content
+    // Add content to the pop-up box
+    const popupText = document.createElement("p");
+    popupText.textContent = "This is a small pop-up box!";
+    popupBox.appendChild(popupText);
+    // Create a close button for the pop-up box
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "Close";
+    closeButton.style.marginTop = "10px";
+    closeButton.addEventListener("click", () => {
+        popupBox.remove(); // Close the pop-up when the button is clicked
+    });
+    popupBox.appendChild(closeButton);
+    // Append the pop-up box to the body
+    document.body.appendChild(popupBox);
 }
-// Listener for messages from popup
+// Overlay toggle listener
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log("Message received in content script:", message);
-    console.log("Message Action in content script:", message.action);
-    console.log("Message Enabled in content script:", message.enabled);
     if (message.action === "enableUI") {
         if (message.enabled) {
-            console.log("Overlay enabled. Fetching roles...");
-            // Fetch and inject the role bar
-            fetch("https://raw.githubusercontent.com/Sam-3-git/Azure-RoleAdvisor/main/webscraper/AzureRoleAdvisor.json")
-                .then((response) => response.json())
-                .then((data) => {
-                console.log("roledata", data);
-                injectRoleBar(data);
-            })
-                .catch((error) => {
-                console.error("Error fetching roles:", error);
-            });
+            console.log("Overlay toggle enabled.");
+            addCloudCompassElement();
         }
         else {
-            console.log("Overlay disabled.");
-            removeRoleBar(); // Remove the role bar
+            console.log("Overlay toggle disabled.");
+            removeCloudCompassElement();
         }
     }
-    else if (message.action === "disableUI") {
-        console.log("Disabling overlay and removing role bar.");
-        removeRoleBar();
+    else {
+        console.log("Overlay toggle disabled.");
+        removeCloudCompassElement();
     }
 });
-// content.ts
-function addCustomSidebarItem() {
-    // Wait for the sidebar to load completely
-    const observer = new MutationObserver(() => {
-        const sidebarList = document.querySelector('.fxs-sidebar-favorites'); // Update with exact selector
-        if (sidebarList) {
-            // Check if the custom item already exists
-            if (!document.getElementById('cloud-compass')) {
-                // Create a new <li> element
-                const customItem = document.createElement('li');
-                customItem.id = 'cloud-compass';
-                customItem.className = 'fxs-sidebar-item fxs-sidebar-favorite-item';
-                customItem.innerHTML = `
-                  <a class="fxs-sidebar-item-link" href="#cloud-compass" title="Cloud Compass">
-                      <div class="fxs-sidebar-icon">
-                          <svg height="100%" width="100%" aria-hidden="true" role="presentation" focusable="false">
-                              <use href="#FxSymbol0-020"></use>
-                          </svg>
-                      </div>
-                      <div class="fxs-sidebar-label">Cloud Compass</div>
-                  </a>
-              `;
-                // Append it under "Free Services"
-                sidebarList.appendChild(customItem);
-            }
-            // Disconnect the observer after appending
-            observer.disconnect();
-        }
-    });
-    // Observe the body for sidebar changes
-    observer.observe(document.body, { childList: true, subtree: true });
-}
-// Run the function
-addCustomSidebarItem();
-console.log("Extension: Cloud Compass");

@@ -91,4 +91,4 @@ loadInitialRoles();
 // Initialize the overlay switch
 handleOverlaySwitch();
 console.log("Extension: Cloud Compass");
-// export {};
+export {};

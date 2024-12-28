@@ -3,6 +3,7 @@
   "name": "Cloud Compass",
   "version": "1.0",
   "description": "Cloud Compass provides users and administrators with quick, accessible information on Azure role-based access control (RBAC) roles. It offers detailed role documentation and insights, helping to navigate Azure's role management system with ease, and integrates seamlessly with Azure portals, making it an essential tool for managing RBAC at scale." ,
+  "short description": "Cloud Compass provides quick access to Azure RBAC role information, helping users and admins navigate role management with ease, directly within Azure portals.",
   "action": {
     "default_popup": "html/popup.html",
     "default_icon": {

@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc && npm run clean && npm run zip",
     "clean": "node ../jscleaner/exportCleaner.js",
-    "zip": "node ../zipper/zip.js"
+    "zip": "node ../zipper/zipper.js"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.287",

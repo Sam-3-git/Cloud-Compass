@@ -3,15 +3,11 @@
   "version": "1.0.0",
   "description": "TypeScript setup for Cloud Compass extension",
   "scripts": {
-    "build": "tsc && npm run clean && npm run zip",
-    "clean": "node ../jscleaner/exportCleaner.js",
-    "zip": "node ../zipper/zipper.js"
+    "build": "tsc && npm run clean",
+    "clean": "node ../jscleaner/exportCleaner.js"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.287",
-    "typescript": "^5.0.0",
-    "archiver": "^5.3.0"
+    "typescript": "^5.7.2"
   }
 }
-
-

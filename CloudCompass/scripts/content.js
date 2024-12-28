@@ -105,4 +105,38 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         removeRoleBar();
     }
 });
+// content.ts
+function addCustomSidebarItem() {
+    // Wait for the sidebar to load completely
+    const observer = new MutationObserver(() => {
+        const sidebarList = document.querySelector('.fxs-sidebar-favorites'); // Update with exact selector
+        if (sidebarList) {
+            // Check if the custom item already exists
+            if (!document.getElementById('cloud-compass')) {
+                // Create a new <li> element
+                const customItem = document.createElement('li');
+                customItem.id = 'cloud-compass';
+                customItem.className = 'fxs-sidebar-item fxs-sidebar-favorite-item';
+                customItem.innerHTML = `
+                  <a class="fxs-sidebar-item-link" href="#cloud-compass" title="Cloud Compass">
+                      <div class="fxs-sidebar-icon">
+                          <svg height="100%" width="100%" aria-hidden="true" role="presentation" focusable="false">
+                              <use href="#FxSymbol0-020"></use>
+                          </svg>
+                      </div>
+                      <div class="fxs-sidebar-label">Cloud Compass</div>
+                  </a>
+              `;
+                // Append it under "Free Services"
+                sidebarList.appendChild(customItem);
+            }
+            // Disconnect the observer after appending
+            observer.disconnect();
+        }
+    });
+    // Observe the body for sidebar changes
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+// Run the function
+addCustomSidebarItem();
 console.log("Extension: Cloud Compass");

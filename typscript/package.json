@@ -9,7 +9,8 @@
   "devDependencies": {
     "@types/chrome": "^0.0.287",
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1"
   }
 }
-
-
